@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#app {
+  background-color: #191919;
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+}
+
