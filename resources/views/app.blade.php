@@ -26,7 +26,7 @@
         <title>{{ config('app.name', 'Cinema') }}</title>
     </head>
     <body>
-        <main id="app">{{-- React served --}}</main>
+        <main class="row no-overflow" id="app">{{-- React served --}}</main>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
