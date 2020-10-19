@@ -1,7 +1,18 @@
-@import url('https://cdn.angelin.dev/css/v1.0/app.css');
 @import './variables';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
 
 #app {
     background-color: $bgColor;
+    overflow: hidden;
+    display: flex;
     height: 100vh;
 }
