@@ -1,7 +1,12 @@
 @import url('https://cdn.angelin.dev/css/v1.0/app.css');
 @import './variables';
+@import './playlist';
+@import './player';
+@import './chat';
 
 #app {
     background-color: $bgColor;
+    padding: 10% 15px;
+    color: white;
     height: 100vh;
 }

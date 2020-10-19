@@ -1,18 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use App\Models\Video;
 
-/*
-|--------------------------------------------------------------------------
-| Broadcast Channels
-|--------------------------------------------------------------------------
-|
-| Here you may register all of the event broadcasting channels that your
-| application supports. The given channel authorization callbacks are
-| used to check if an authenticated user can listen to the channel.
-|
-*/
+Broadcast::channel('chat', function($user) {
+    return ['user' => $user];
+});
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('playlist', function($user) {
+    return ['user' => $user, 'videos' => Video::all()];
+});
+
+Broadcast::channel('player', function($user) {
+    return ['user' => $user];
 });

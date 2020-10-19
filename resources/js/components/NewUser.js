@@ -15,7 +15,7 @@ export default function NewUser() {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'X-CSRF-Token': document.querySelector('[name=_token]').getAttribute('content'),
+                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
             },
             body: formData,
         };

@@ -56204,7 +56204,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
+  key: "84e7fa8ec74c0b0a8949",
   cluster: "eu",
   forceTLS: true
 });
@@ -56287,6 +56287,9 @@ function App() {
                 if (authenticated) {
                   dispatch(Object(_states_User__WEBPACK_IMPORTED_MODULE_3__["addUser"])());
                 }
+              })["catch"](function (error) {
+                console.log(error);
+                setLoading(false);
               });
 
             case 2:
@@ -56326,7 +56329,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Chat() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "chat rounded"
+  }, "Chat");
 }
 
 /***/ }),
@@ -56394,7 +56399,7 @@ function NewUser() {
                 method: 'POST',
                 headers: {
                   Accept: 'application/json',
-                  'X-CSRF-Token': document.querySelector('[name=_token]').getAttribute('content')
+                  'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content')
                 },
                 body: formData
               };
@@ -56458,7 +56463,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Player() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "player"
+  }, "Player");
 }
 
 /***/ }),
@@ -56473,11 +56480,19 @@ function Player() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Playlist; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
 
 function Playlist() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+  console.log(window.Echo.join);
+  window.Echo.join('playlist').here(function (data) {
+    return console.log(data);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "playlist rounded"
+  }, "Playlist");
 }
 
 /***/ }),

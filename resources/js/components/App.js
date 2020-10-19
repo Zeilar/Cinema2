@@ -19,7 +19,11 @@ export default function App() {
                 if (authenticated) {
                     dispatch(addUser());
                 }
-            });     
+            })
+            .catch(error => {
+                console.log(error);
+                setLoading(false);
+            });
     }
 
     useEffect(() => {

@@ -1,5 +1,22 @@
-@import url(https://cdn.angelin.dev/css/v1.0/app.css);#app {
+@import url(https://cdn.angelin.dev/css/v1.0/app.css);.playlist {
+  background-color: #1e1e1e;
+  flex: 1;
+}
+
+.player {
+  margin: 0 15px;
+  width: 50%;
+}
+
+.chat {
+  background-color: #1e1e1e;
+  flex: 1;
+}
+
+#app {
   background-color: #191919;
+  padding: 10% 15px;
+  color: white;
   height: 100vh;
 }
 
