@@ -1,33 +1,46 @@
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import { userReducer } from './User';
-import { createStore } from 'redux';
+import { addUser } from '../states/User';
 import Playlist from './Playlist';
 import NewUser from './NewUser';
 import Player from './Player';
 import Chat from './Chat';
 
-const allReducers = combineReducers({
-    user: userReducer,
-});
-
-const states = createStore(allReducers);
-
 export default function App() {
-    const [user, setUser] = useState(localStorage.getItem('user'));
+    const user = useSelector(state => state.user);
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
-    return (
-        <Provider store={states}>
-            {
-                !user
-                    ? <NewUser />
-                    : <>
-                        <Playlist />
-                        <Player />
-                        <Chat />
-                    </>
-            }
-        </Provider>
-    );
+    async function authenticate() {
+        await fetch('/api/authenticate')
+            .then(response => response.status === 200 ? response.json() : false)
+            .then(authenticated => {
+                setLoading(false);
+                if (authenticated) {
+                    dispatch(addUser());
+                }
+            });     
+    }
+
+    useEffect(() => {
+        if (!user) authenticate();
+    }, [user, authenticate]);
+
+    const render = () => {
+        return (
+            <>
+                {
+                    !user
+                        ? <NewUser />
+                        : <>
+                            <Playlist />
+                            <Player />
+                            <Chat />
+                        </>
+                }
+            </>
+        )
+    }
+
+    return !loading && render();
 }

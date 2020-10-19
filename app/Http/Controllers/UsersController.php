@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -14,17 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response(User::all(['username']));
     }
 
     /**
@@ -35,7 +26,18 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($user = User::where('username', $request->username)->first()) {
+            Auth::loginUsingId($user->id);
+            return response(['user' => true]);
+        }
+
+        $request->validate([
+            'username' => 'required|max:15|string|unique:users',
+        ]);
+
+        $user = User::create(['username' => $request->username]);
+
+        return response(['user' => true]);
     }
 
     /**
@@ -45,17 +47,6 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
     {
         //
     }

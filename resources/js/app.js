@@ -1,3 +1,7 @@
+import { userReducer } from './states/User';
+import { combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import App from './components/App';
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -5,8 +9,15 @@ import './bootstrap';
 
 const app = document.getElementById('app');
 if (app) {
+    const allReducers = combineReducers({
+        user: userReducer,
+    });
+    const states = createStore(allReducers);
+
     ReactDOM.render(
-        <App />,
+        <Provider store={states}>
+            <App />
+        </Provider>,
         app
     );
 }

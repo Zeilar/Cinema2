@@ -1,31 +1,41 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addUser, removeUser } from './User';
+import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../states/User';
 
 export default function NewUser() {
-    const user = useSelector(state => state.user)
+    const [usernameError, setUsernameError] = useState();
     const dispatch = useDispatch();
     const input = useRef();
 
-    console.log(user);
-
     async function login() {
         const formData = new FormData();
-
-        formData.append('username', 'test');
+        formData.append('username', input.current.value);
 
         const args = {
             method: 'POST',
             headers: {
+                Accept: 'application/json',
                 'X-CSRF-Token': document.querySelector('[name=_token]').getAttribute('content'),
             },
             body: formData,
         };
-        await fetch(`${location.origin}/api/guests`, args)
-            .then(response => response.json())
-            .then(data => console.log(data));
+        await fetch(`${location.origin}/api/users`, args)
+            .then(response => {
+                if (response.status === 200 || response.status === 422) {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                if (data.errors) {
+                    setUsernameError(data.errors.username[0]);
+                }
 
-        // dispatch(addUser());
+                if (data.user) {
+                    setUsernameError(false);
+                    dispatch(addUser());
+                }
+            });
+
     }
 
     return (
@@ -36,6 +46,7 @@ export default function NewUser() {
 
             <div className="newUserForm">
                 <div className="newUserFormUsername">
+                    {usernameError && <p className="formError">{usernameError}</p>}
                     <input type="text" ref={input} />
                 </div>
             </div>
