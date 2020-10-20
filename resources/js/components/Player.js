@@ -15,11 +15,10 @@ export default function Player() {
     useEffect(() => {
         window.Echo.join('player')
             .listen('PlayVideo', ({ videoId }) => {
-                console.log('play new video');
                 setVideos(p => p.filter(video => video !== videoId));
                 setVideoId(videoId);
             });
-    }, [setVideos]);
+    }, [setVideos, setVideoId]);
 
     return (
         <div className="player w-50 center-children">

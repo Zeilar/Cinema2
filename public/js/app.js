@@ -58301,7 +58301,6 @@ function Player() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.Echo.join('player').listen('PlayVideo', function (_ref) {
       var videoId = _ref.videoId;
-      console.log('play new video');
       setVideos(function (p) {
         return p.filter(function (video) {
           return video !== videoId;
@@ -58309,7 +58308,7 @@ function Player() {
       });
       setVideoId(videoId);
     });
-  }, [setVideos]);
+  }, [setVideos, setVideoId]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "player w-50 center-children"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_youtube__WEBPACK_IMPORTED_MODULE_3__["default"], {
