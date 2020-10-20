@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../states/User';
-import Playlist from './Playlist';
+import React, { useState, useEffect } from 'react';
 import NewUser from './NewUser';
 import Player from './Player';
 import Chat from './Chat';
 
 export default function App() {
-    const [user, setUser] = useContext(UserContext);
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(false);
 
     async function authenticate() {
         await fetch('/api/authenticate')
@@ -33,7 +31,6 @@ export default function App() {
                     !user
                         ? <NewUser />
                         : <>
-                            <Playlist />
                             <Player />
                             <Chat />
                         </>

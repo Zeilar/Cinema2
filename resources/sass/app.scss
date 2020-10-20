@@ -1,6 +1,5 @@
 @import url('https://cdn.angelin.dev/css/v1.0/app.css');
 @import './variables';
-@import './playlist';
 @import './elements';
 @import './player';
 @import './fonts';
@@ -10,7 +9,7 @@
 
 #app {
     background-color: $bgColor;
-    padding: 10% 15px;
+    padding: 5% 15px;
     color: white;
     height: 100vh;
 }

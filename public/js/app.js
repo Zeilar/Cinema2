@@ -57974,18 +57974,12 @@ function coerce(val) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _states_VideoId__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./states/VideoId */ "./resources/js/states/VideoId.js");
-/* harmony import */ var _states_Videos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./states/Videos */ "./resources/js/states/Videos.js");
-/* harmony import */ var _states_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./states/User */ "./resources/js/states/User.js");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-
-
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
@@ -57993,11 +57987,7 @@ __webpack_require__.r(__webpack_exports__);
 var app = document.getElementById('app');
 
 if (app) {
-  react_dom__WEBPACK_IMPORTED_MODULE_4___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_states_User__WEBPACK_IMPORTED_MODULE_2__["UserProvider"], {
-    value: false
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_states_Videos__WEBPACK_IMPORTED_MODULE_1__["VideosProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_states_VideoId__WEBPACK_IMPORTED_MODULE_0__["VideoIdProvider"], {
-    value: "dQw4w9WgXcQ"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_components_App__WEBPACK_IMPORTED_MODULE_3__["default"], null)))), app);
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_App__WEBPACK_IMPORTED_MODULE_0__["default"], null), app);
 }
 
 /***/ }),
@@ -58038,11 +58028,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _states_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../states/User */ "./resources/js/states/User.js");
-/* harmony import */ var _Playlist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Playlist */ "./resources/js/components/Playlist.js");
-/* harmony import */ var _NewUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewUser */ "./resources/js/components/NewUser.js");
-/* harmony import */ var _Player__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Player */ "./resources/js/components/Player.js");
-/* harmony import */ var _Chat__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Chat */ "./resources/js/components/Chat.js");
+/* harmony import */ var _NewUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewUser */ "./resources/js/components/NewUser.js");
+/* harmony import */ var _Player__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Player */ "./resources/js/components/Player.js");
+/* harmony import */ var _Chat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Chat */ "./resources/js/components/Chat.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -58065,18 +58053,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
 function App() {
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_states_User__WEBPACK_IMPORTED_MODULE_2__["UserContext"]),
-      _useContext2 = _slicedToArray(_useContext, 2),
-      user = _useContext2[0],
-      setUser = _useContext2[1];
-
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
       loading = _useState2[0],
       setLoading = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      user = _useState4[0],
+      setUser = _useState4[1];
 
   function authenticate() {
     return _authenticate.apply(this, arguments);
@@ -58114,7 +58100,7 @@ function App() {
   }, [user, authenticate]);
 
   var render = function render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, !user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NewUser__WEBPACK_IMPORTED_MODULE_4__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Playlist__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Player__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, !user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NewUser__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Player__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
   };
 
   return !loading && render();
@@ -58264,10 +58250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Player; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _states_VideoId__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../states/VideoId */ "./resources/js/states/VideoId.js");
-/* harmony import */ var _states_Videos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../states/Videos */ "./resources/js/states/Videos.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions */ "./resources/js/functions.js");
-/* harmony import */ var react_youtube__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-youtube */ "./node_modules/react-youtube/dist/index.esm.js");
+/* harmony import */ var react_youtube__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-youtube */ "./node_modules/react-youtube/dist/index.esm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -58282,19 +58265,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
 function Player() {
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_states_VideoId__WEBPACK_IMPORTED_MODULE_1__["VideoIdContext"]),
-      _useContext2 = _slicedToArray(_useContext, 2),
-      videoId = _useContext2[0],
-      setVideoId = _useContext2[1];
-
-  var _useContext3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_states_Videos__WEBPACK_IMPORTED_MODULE_2__["VideosContext"]),
-      _useContext4 = _slicedToArray(_useContext3, 2),
-      videos = _useContext4[0],
-      setVideos = _useContext4[1];
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      videoId = _useState2[0],
+      setVideoId = _useState2[1];
 
   var options = {
     height: '100%',
@@ -58303,517 +58278,16 @@ function Player() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.Echo.join('player').listen('PlayVideo', function (_ref) {
       var videoId = _ref.videoId;
-      Object(_functions__WEBPACK_IMPORTED_MODULE_3__["deleteVideo"])(videoId, setVideos);
-      setVideoId(videoId);
+      console.log(videoId);
     });
-  }, [setVideos, setVideoId]);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "player w-50 center-children"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_youtube__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "player w-75 center-children"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_youtube__WEBPACK_IMPORTED_MODULE_1__["default"], {
     videoId: videoId,
     containerClassName: "playerContainer",
     opts: options
   }));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Playlist.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/Playlist.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Playlist; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _states_Videos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../states/Videos */ "./resources/js/states/Videos.js");
-/* harmony import */ var _Video__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Video */ "./resources/js/components/Video.js");
-
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-function Playlist() {
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_states_Videos__WEBPACK_IMPORTED_MODULE_2__["VideosContext"]),
-      _useContext2 = _slicedToArray(_useContext, 2),
-      videos = _useContext2[0],
-      setVideos = _useContext2[1];
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
-      _useState2 = _slicedToArray(_useState, 2),
-      inputError = _useState2[0],
-      setInputError = _useState2[1];
-
-  var input = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
-
-  function videoSubmit(_x) {
-    return _videoSubmit.apply(this, arguments);
-  }
-
-  function _videoSubmit() {
-    _videoSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-      var _input$current;
-
-      var url, parameters, videoId, formData, args;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              if (!(e.key !== 'Enter' || ((_input$current = input.current) === null || _input$current === void 0 ? void 0 : _input$current.value) === '')) {
-                _context.next = 2;
-                break;
-              }
-
-              return _context.abrupt("return");
-
-            case 2:
-              // error message handling
-              url = '';
-              _context.prev = 3;
-              url = new URL(input.current.value);
-              _context.next = 10;
-              break;
-
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](3);
-              return _context.abrupt("return", alert('Invalid URL, please try again\nMake sure it contains "v="'));
-
-            case 10:
-              parameters = new URLSearchParams(url.search);
-              videoId = parameters.get('v');
-
-              if (videoId) {
-                _context.next = 14;
-                break;
-              }
-
-              return _context.abrupt("return");
-
-            case 14:
-              formData = new FormData();
-              formData.append('videoId', videoId);
-              args = {
-                method: 'POST',
-                headers: {
-                  'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content')
-                },
-                body: formData
-              };
-              _context.next = 19;
-              return fetch("".concat(location.origin, "/api/videos"), args).then(function (response) {
-                if (response.status === 422) {
-                  return response.json();
-                } else if (response.status !== 200) {
-                  setInputError('Something went wrong!');
-                }
-              }).then(function (data) {
-                if (data === null || data === void 0 ? void 0 : data.message) setInputError(data.message);
-                input.current.value = '';
-              });
-
-            case 19:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[3, 7]]);
-    }));
-    return _videoSubmit.apply(this, arguments);
-  }
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    window.Echo.join('playlist').here(function (data) {
-      return setVideos(data[0].videos.map(function (video) {
-        return video.video_id;
-      }));
-    }).listen('AddVideo', function (_ref) {
-      var videoId = _ref.videoId;
-      return setVideos(function (p) {
-        return [].concat(_toConsumableArray(p), [videoId]);
-      });
-    }).listen('RemoveVideo', function (_ref2) {
-      var videoId = _ref2.videoId;
-      console.log('remove', videoId);
-    });
-  }, [setVideos]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "playlist col w-25"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "videos overflow-auto"
-  }, videos === null || videos === void 0 ? void 0 : videos.map(function (videoId) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Video__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      videoId: videoId,
-      key: videoId
-    });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "playlistAdd col"
-  }, inputError && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-    className: "form-error ml-1 mb-2"
-  }, inputError), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "playlistInput w-100 border-0",
-    onChange: function onChange() {
-      return setInputError(false);
-    },
-    ref: input,
-    placeholder: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    onKeyDown: videoSubmit
-  })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Video.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Video.js ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Video; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _states_Videos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../states/Videos */ "./resources/js/states/Videos.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions */ "./resources/js/functions.js");
-/* harmony import */ var _storage_app_public_icons_trash_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../storage/app/public/icons/trash.svg */ "./storage/app/public/icons/trash.svg");
-/* harmony import */ var _storage_app_public_icons_trash_svg__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_storage_app_public_icons_trash_svg__WEBPACK_IMPORTED_MODULE_4__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-console.log(_storage_app_public_icons_trash_svg__WEBPACK_IMPORTED_MODULE_4___default.a);
-function Video(_ref) {
-  var videoId = _ref.videoId;
-
-  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_1__["useContext"])(_states_Videos__WEBPACK_IMPORTED_MODULE_2__["VideosContext"]),
-      _useContext2 = _slicedToArray(_useContext, 2),
-      videos = _useContext2[0],
-      setVideos = _useContext2[1];
-
-  function playVideo() {
-    return _playVideo.apply(this, arguments);
-  }
-
-  function _playVideo() {
-    _playVideo = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var formData, args;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              formData = new FormData();
-              formData.append('videoId', videoId);
-              args = {
-                method: 'POST',
-                headers: {
-                  'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content')
-                }
-              };
-              _context.next = 5;
-              return fetch("".concat(location.origin, "/api/videos/").concat(videoId, "/play"), args);
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _playVideo.apply(this, arguments);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "video mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-    className: "videoThumbnail d-flex",
-    src: "https://img.youtube.com/vi/".concat(videoId, "/0.jpg"),
-    alt: "Thumbnail"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "videoDelete",
-    onClick: function onClick() {
-      return Object(_functions__WEBPACK_IMPORTED_MODULE_3__["deleteVideo"])(videoId, setVideos);
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    xmlnsXlink: "http://www.w3.org/1999/xlink",
-    version: "1.1",
-    width: "24",
-    height: "24",
-    viewBox: "0 0 24 24"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    d: "M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "videoPlay center-self",
-    title: "Play video",
-    onClick: playVideo
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    xmlnsXlink: "http://www.w3.org/1999/xlink",
-    version: "1.1",
-    width: "24",
-    height: "24",
-    viewBox: "0 0 24 24"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
-    d: "M1,21H23L12,2"
-  }))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/functions.js":
-/*!***********************************!*\
-  !*** ./resources/js/functions.js ***!
-  \***********************************/
-/*! exports provided: deleteVideo, setVideo */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteVideo", function() { return deleteVideo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setVideo", function() { return setVideo; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function deleteVideo(_x, _x2) {
-  return _deleteVideo.apply(this, arguments);
-}
-
-function _deleteVideo() {
-  _deleteVideo = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(videoId, setVideos) {
-    var args;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            args = {
-              method: 'DELETE',
-              headers: {
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content')
-              }
-            };
-            _context.next = 3;
-            return fetch("".concat(location.origin, "/api/videos/").concat(videoId !== null && videoId !== void 0 ? videoId : 0), args).then(function (response) {
-              if (response.status === 200) {
-                return response.json();
-              }
-            }).then(function (data) {
-              if (data) setVideos(function (p) {
-                return p.filter(function (video) {
-                  return video !== data.videoId;
-                });
-              });
-            });
-
-          case 3:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _deleteVideo.apply(this, arguments);
-}
-
-function setVideo() {
-  return _setVideo.apply(this, arguments);
-}
-
-function _setVideo() {
-  _setVideo = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _setVideo.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./resources/js/states/User.js":
-/*!*************************************!*\
-  !*** ./resources/js/states/User.js ***!
-  \*************************************/
-/*! exports provided: UserContext, UserProvider */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserContext", function() { return UserContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserProvider", function() { return UserProvider; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-var UserContext = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
-function UserProvider(_ref) {
-  var children = _ref.children;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      user = _useState2[0],
-      setUser = _useState2[1];
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UserContext.Provider, {
-    value: [user, setUser]
-  }, children);
-}
-
-/***/ }),
-
-/***/ "./resources/js/states/VideoId.js":
-/*!****************************************!*\
-  !*** ./resources/js/states/VideoId.js ***!
-  \****************************************/
-/*! exports provided: VideoIdContext, VideoIdProvider */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideoIdContext", function() { return VideoIdContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideoIdProvider", function() { return VideoIdProvider; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-var VideoIdContext = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
-function VideoIdProvider(_ref) {
-  var children = _ref.children;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('dQw4w9WgXcQ'),
-      _useState2 = _slicedToArray(_useState, 2),
-      videoId = _useState2[0],
-      setVideoId = _useState2[1];
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(VideoIdContext.Provider, {
-    value: [videoId, setVideoId]
-  }, children);
-}
-
-/***/ }),
-
-/***/ "./resources/js/states/Videos.js":
-/*!***************************************!*\
-  !*** ./resources/js/states/Videos.js ***!
-  \***************************************/
-/*! exports provided: VideosContext, VideosProvider */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideosContext", function() { return VideosContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VideosProvider", function() { return VideosProvider; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-var VideosContext = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
-function VideosProvider(_ref) {
-  var children = _ref.children;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState2 = _slicedToArray(_useState, 2),
-      videos = _useState2[0],
-      setVideos = _useState2[1];
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(VideosContext.Provider, {
-    value: [videos, setVideos]
-  }, children);
 }
 
 /***/ }),
@@ -58826,17 +58300,6 @@ function VideosProvider(_ref) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./storage/app/public/icons/trash.svg":
-/*!********************************************!*\
-  !*** ./storage/app/public/icons/trash.svg ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/trash.svg?4b7e37f7ed2ee7f702625cbca41fa315";
 
 /***/ }),
 

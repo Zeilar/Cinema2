@@ -1,12 +1,8 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
-import { VideoIdContext } from '../states/VideoId';
-import { VideosContext } from '../states/Videos';
-import { deleteVideo } from '../functions';
+import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
 
 export default function Player() {
-    const [videoId, setVideoId] = useContext(VideoIdContext);
-    const [videos, setVideos] = useContext(VideosContext);
+    const [videoId, setVideoId] = useState();
 
     const options = {
         height: '100%',
@@ -16,13 +12,12 @@ export default function Player() {
     useEffect(() => {
         window.Echo.join('player')
             .listen('PlayVideo', ({ videoId }) => {
-                deleteVideo(videoId, setVideos);
-                setVideoId(videoId);
+                console.log(videoId);
             });
-    }, [setVideos, setVideoId]);
+    });
 
     return (
-        <div className="player w-50 center-children">
+        <div className="player w-75 center-children">
             <YouTube videoId={videoId} containerClassName="playerContainer" opts={options} />
         </div>
     );

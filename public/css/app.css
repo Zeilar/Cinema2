@@ -1,19 +1,4 @@
-@import url(https://cdn.angelin.dev/css/v1.0/app.css);.playlist {
-  background-color: #1e1e1e;
-  border: 1px solid #323232;
-  flex: 1;
-}
-
-.playlistAdd {
-  margin-top: auto;
-  padding: 10px;
-}
-
-.playlistAdd .form-error {
-  color: red;
-}
-
-input,
+@import url(https://cdn.angelin.dev/css/v1.0/app.css);input,
 textarea {
   transition: all 0.1s linear;
 }
@@ -121,7 +106,7 @@ button:hover {
 
 #app {
   background-color: #191919;
-  padding: 10% 15px;
+  padding: 5% 15px;
   color: white;
   height: 100vh;
 }
