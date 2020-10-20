@@ -46,25 +46,6 @@ export default function Playlist() {
             });
     }
 
-    async function deleteVideo(videoId) {
-        const args = {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
-            },
-        };
-
-        await fetch(`${location.origin}/api/videos/${videoId ?? 0}`, args)
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then(data => {
-                if (data) setVideos(p => p.filter(video => video !== data.videoId));
-            });
-    }
-
     useEffect(() => {
         window.Echo.join('playlist')
             .here(data => setVideos(data[0].videos.map(video => video.video_id)))
@@ -77,7 +58,7 @@ export default function Playlist() {
     return (
         <div className="playlist col w-25">
             <div className="videos overflow-auto">
-                {videos?.map(videoId => <Video videoId={videoId} deleteVideo={deleteVideo} key={videoId} />)}
+                {videos?.map(videoId => <Video videoId={videoId} key={videoId} />)}
             </div>
 
             <div className="playlistAdd col">

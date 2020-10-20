@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { VideoIdContext } from '../states/VideoId';
 import { VideosContext } from '../states/Videos';
+import { deleteVideo } from '../functions';
 import YouTube from 'react-youtube';
 
 export default function Player() {
@@ -15,7 +16,7 @@ export default function Player() {
     useEffect(() => {
         window.Echo.join('player')
             .listen('PlayVideo', ({ videoId }) => {
-                setVideos(p => p.filter(video => video !== videoId));
+                deleteVideo(videoId, setVideos);
                 setVideoId(videoId);
             });
     }, [setVideos, setVideoId]);

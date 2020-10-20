@@ -79,8 +79,9 @@ class VideosController extends Controller
         return response(['videoId' => $videoId]);
     }
 
-    public function play(string $videoId)
+    public function play(Request $request, string $videoId)
     {
+        dd($request);
         broadcast(new PlayVideo($videoId));
         return response(true);
     }
