@@ -1,0 +1,37 @@
+input,
+textarea {
+    transition: all 0.1s linear;
+
+    &:focus {
+        box-shadow: 0 0 0 2px $primary;
+    }
+}
+
+input {
+    background: rgb(25, 25, 25);
+    border-radius: 10px;
+    color: inherit;
+    padding: 10px;
+    height: 30px;
+    outline: 0;
+}
+
+svg {
+    fill: rgb(100, 100, 100);
+}
+
+button {
+    transition: all 0.1s linear;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    height: 40px;
+    width: 40px;
+    outline: 0;
+    border: 0;
+
+    &:hover {
+        background-color: rgba(75, 75, 75, 0.75);
+    }
+}

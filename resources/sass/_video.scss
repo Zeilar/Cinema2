@@ -1,0 +1,37 @@
+.video {
+    position: relative;
+
+    &:nth-child(odd) {
+        background-color: rgb(20, 20, 20);
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.videoDelete,
+.videoPlay {
+    background-color: $bgColor;
+
+    &:hover {
+        background-color: rgb(40, 40, 40);
+    }
+}
+
+.videoDelete {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    svg {
+        fill: red;
+    }
+}
+
+.videoPlay {
+    svg {
+        transform: rotate(90deg);
+        fill: white;
+    }
+}

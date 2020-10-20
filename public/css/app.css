@@ -1,16 +1,122 @@
 @import url(https://cdn.angelin.dev/css/v1.0/app.css);.playlist {
   background-color: #1e1e1e;
+  border: 1px solid #323232;
   flex: 1;
 }
 
+.playlistAdd {
+  margin-top: auto;
+  padding: 10px;
+}
+
+.playlistAdd .form-error {
+  color: red;
+}
+
+input,
+textarea {
+  transition: all 0.1s linear;
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 0 2px #00b365;
+}
+
+input {
+  background: #191919;
+  border-radius: 10px;
+  color: inherit;
+  padding: 10px;
+  height: 30px;
+  outline: 0;
+}
+
+svg {
+  fill: #646464;
+}
+
+button {
+  transition: all 0.1s linear;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  height: 40px;
+  width: 40px;
+  outline: 0;
+  border: 0;
+}
+
+button:hover {
+  background-color: rgba(75, 75, 75, 0.75);
+}
+
 .player {
+  background-color: #1e1e1e;
   margin: 0 15px;
-  width: 50%;
+}
+
+.playerContainer {
+  height: 100%;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/storage/fonts/Roboto-Regular.ttf");
+}
+
+.video {
+  position: relative;
+}
+
+.video:nth-child(odd) {
+  background-color: #141414;
+}
+
+.video:last-child {
+  margin-bottom: 0;
+}
+
+.videoDelete,
+.videoPlay {
+  background-color: #191919;
+}
+
+.videoDelete:hover,
+.videoPlay:hover {
+  background-color: #282828;
+}
+
+.videoDelete {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.videoDelete svg {
+  fill: red;
+}
+
+.videoPlay svg {
+  transform: rotate(90deg);
+  fill: white;
 }
 
 .chat {
   background-color: #1e1e1e;
+  border: 1px solid #323232;
   flex: 1;
+}
+
+::-moz-selection {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #00b365;
+}
+
+::selection {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #00b365;
 }
 
 #app {
@@ -18,5 +124,11 @@
   padding: 10% 15px;
   color: white;
   height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  font-family: Roboto;
 }
 

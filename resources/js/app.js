@@ -1,3 +1,4 @@
+import { videoIdReducer } from './states/VideoId';
 import { userReducer } from './states/User';
 import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,6 +11,7 @@ import './bootstrap';
 const app = document.getElementById('app');
 if (app) {
     const allReducers = combineReducers({
+        videoId: videoIdReducer,
         user: userReducer,
     });
     const states = createStore(allReducers);

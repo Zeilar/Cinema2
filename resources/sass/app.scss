@@ -1,12 +1,22 @@
 @import url('https://cdn.angelin.dev/css/v1.0/app.css');
 @import './variables';
 @import './playlist';
+@import './elements';
 @import './player';
+@import './fonts';
+@import './video';
 @import './chat';
+@import './misc';
 
 #app {
     background-color: $bgColor;
     padding: 10% 15px;
     color: white;
     height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+    font-family: Roboto;
 }
