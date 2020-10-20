@@ -1,4 +1,5 @@
 import { VideoIdProvider } from './states/VideoId';
+import { VideosProvider } from './states/Videos';
 import { UserProvider } from './states/User';
 import App from './components/App';
 import ReactDOM from 'react-dom';
@@ -9,9 +10,11 @@ const app = document.getElementById('app');
 if (app) {
     ReactDOM.render(
         <UserProvider value={false}>
-            <VideoIdProvider value="dQw4w9WgXcQ">
-                <App />
-            </VideoIdProvider>
+            <VideosProvider>
+                <VideoIdProvider value="dQw4w9WgXcQ">
+                    <App />
+                </VideoIdProvider>
+            </VideosProvider>
         </UserProvider>,
         app
     );

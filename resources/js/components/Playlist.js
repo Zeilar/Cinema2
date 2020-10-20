@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { VideosContext } from '../states/Videos';
 import Video from './Video';
 
 export default function Playlist() {
+    const [videos, setVideos] = useContext(VideosContext);
     const [inputError, setInputError] = useState();
-    const [videos, setVideos] = useState();
     const input = useRef();
 
     async function videoSubmit(e) {

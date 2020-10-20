@@ -5,17 +5,13 @@ console.log(Trash);
 
 export default function Video({ videoId, deleteVideo }) {
     async function playVideo() {
-        // deleteVideo(videoId);
-
         const args = {
             method: 'POST',
             headers: {
                 'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
             },
         };
-
-        await fetch(`${location.origin}/api/videos/${videoId}/play`, args)
-            .then(response => response.json());
+        await fetch(`${location.origin}/api/videos/${videoId}/play`, args);
     }
 
     return (

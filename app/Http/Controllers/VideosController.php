@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\PlayVideo;
 use App\Events\AddVideo;
 use App\Models\Video;
 
@@ -80,6 +81,7 @@ class VideosController extends Controller
 
     public function play(string $videoId)
     {
-        dd($videoId);
+        broadcast(new PlayVideo($videoId));
+        return response(true);
     }
 }
