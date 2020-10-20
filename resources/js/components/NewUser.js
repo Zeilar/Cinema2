@@ -1,10 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../states/User';
 
 export default function NewUser() {
     const [usernameError, setUsernameError] = useState();
-    const dispatch = useDispatch();
     const input = useRef();
 
     async function login() {
@@ -32,7 +30,7 @@ export default function NewUser() {
 
                 if (data.user) {
                     setUsernameError(false);
-                    dispatch(addUser());
+                    // add user
                 }
             });
 

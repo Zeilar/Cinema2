@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addUser } from '../states/VideoId';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { VideoIdContext } from '../states/VideoId';
 import YouTube from 'react-youtube';
 
 export default function Player() {
-    // const [videoId, setVideoId] = useState('dQw4w9WgXcQ');
-    const videoId = useSelector(state => state.videoId);
+    const [videoId, setVideoId] = useContext(VideoIdContext);
 
     const options = {
         height: '100%',

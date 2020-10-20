@@ -1,28 +1,13 @@
-function addUser() {
-    return {
-        type: 'addUser',
-    };
-}
+import React, { useState, createContext } from 'react';
 
-function removeUser() {
-    return {
-        type: 'removeUser',
-    };
-}
+export const UserContext = createContext();
 
-function userReducer(state = false, action) {
-    switch (action.type) {
-        case 'addUser':
-            return state = true;
-        case 'removeUser':
-            return state = false;
-        default:
-            return state;
-    }
-}
+export function UserProvider({ children }) {
+    const [user, setUser] = useState(false);
 
-export {
-    addUser,
-    removeUser,
-    userReducer,
-};
+    return (
+        <UserContext.Provider value={[user, setUser]}>
+            {children}
+        </UserContext.Provider>
+    );
+}

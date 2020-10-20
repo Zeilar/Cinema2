@@ -1,19 +1,13 @@
-function setVideoId() {
-    return {
-        type: 'setVideoId',
-    };
-}
+import React, { useState, createContext } from 'react';
 
-function videoIdReducer(state = 'dQw4w9WgXcQ', action) {
-    switch (action.type) {
-        case 'setVideoId':
-            return state;
-        default:
-            return state;
-    }
-}
+export const VideoIdContext = createContext();
 
-export {
-    setVideoId,
-    videoIdReducer,
-};
+export function VideoIdProvider({ children }) {
+    const [videoId, setVideoId] = useState('dQw4w9WgXcQ');
+
+    return (
+        <VideoIdContext.Provider value={[videoId, setVideoId]}>
+            {children}
+        </VideoIdContext.Provider>
+    );
+}
