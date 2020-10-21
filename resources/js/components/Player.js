@@ -48,11 +48,13 @@ export default function Player() {
     }
 
     async function play(whisperToOthers = true) {
+        console.log('play', whisperToOthers);
         youtube.current.internalPlayer.playVideo();
         if (whisperToOthers) channel?.whisper('play', { play: true });
     }
 
     async function pause(whisperToOthers = true) {
+        console.log('pause', whisperToOthers);
         youtube.current.internalPlayer.pauseVideo();
         if (whisperToOthers) channel?.whisper('pause', { pause: true });
     }
@@ -93,7 +95,7 @@ export default function Player() {
                 if (videoId === data[0].videoId) return;
                 setVideoId(data[0].videoId);
             })
-            .listen('PlayVideo', ({ videoId }) => setVideoId(videoId ?? 'dQw4w9WgXcQ'))
+            .listen('PlayVideo', ({ videoId }) => setVideoId(videoId))
             .listenForWhisper('skip', e => skip(e.direction, false))
             .listenForWhisper('pause', () => pause(false))
             .listenForWhisper('play', () => play(false))
@@ -117,22 +119,22 @@ export default function Player() {
             <YouTube ref={youtube} videoId={videoId} containerClassName="playerContainer" opts={options} />
 
             <div className="playerControls row mt-2 mb-2 center-children">
-                <button title="Restart" onClick={restart}>
+                <button title="Restart" onClick={() => restart()}>
                     <Icon path={mdiSkipBackward} />
                 </button>
                 <button title="Skip backward 15 seconds" onClick={() => skip('backward')}>
                     <Icon path={mdiSkipPrevious} />
                 </button>
-                <button title="Play" onClick={play}>
+                <button title="Play" onClick={() => play()}>
                     <Icon path={mdiPlay} />
                 </button>
-                <button title="Pause" onClick={pause}>
+                <button title="Pause" onClick={() => pause()}>
                     <Icon path={mdiPause} />
                 </button>
                 <button title="Skip forward 15 seconds" onClick={() => skip('forward')}>
                     <Icon path={mdiSkipNext} />
                 </button>
-                <button title="Sync with party" onClick={sync}>
+                <button title="Sync with party" onClick={() => sync()}>
                     <Icon path={mdiSync} />
                 </button>
             </div>
