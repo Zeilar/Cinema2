@@ -29,7 +29,7 @@ export default function App() {
             <>
                 {
                     !user
-                        ? <NewUser />
+                        ? <NewUser setUser={setUser} />
                         : <>
                             <Player />
                             <Chat />

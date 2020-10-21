@@ -35,7 +35,9 @@ class UsersController extends Controller
             'username' => 'required|max:15|string|unique:users',
         ]);
 
-        User::create(['username' => $request->username]);
+        $user = User::create(['username' => $request->username]);
+
+        Auth::loginUsingId($user->id);
 
         return response(['user' => true]);
     }

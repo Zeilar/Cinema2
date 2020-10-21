@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-export default function NewUser() {
+export default function NewUser({ setUser }) {
     const [usernameError, setUsernameError] = useState();
     const input = useRef();
 
@@ -30,7 +30,7 @@ export default function NewUser() {
 
                 if (data.user) {
                     setUsernameError(false);
-                    // add user
+                    setUser(true);
                 }
             });
 

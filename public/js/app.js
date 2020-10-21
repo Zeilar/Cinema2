@@ -58100,7 +58100,9 @@ function App() {
   }, [user, authenticate]);
 
   var render = function render() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, !user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NewUser__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Player__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, !user ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NewUser__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      setUser: setUser
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Player__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
   };
 
   return !loading && render();
@@ -58164,7 +58166,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function NewUser() {
+function NewUser(_ref) {
+  var setUser = _ref.setUser;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       usernameError = _useState2[0],
@@ -58204,7 +58208,8 @@ function NewUser() {
                 }
 
                 if (data.user) {
-                  setUsernameError(false); // add user
+                  setUsernameError(false);
+                  setUser(true);
                 }
               });
 
@@ -58266,7 +58271,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Player() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('dQw4w9WgXcQ'),
       _useState2 = _slicedToArray(_useState, 2),
       videoId = _useState2[0],
       setVideoId = _useState2[1];
@@ -58282,7 +58287,7 @@ function Player() {
     });
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "player w-75 center-children"
+    className: "player w-75"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_youtube__WEBPACK_IMPORTED_MODULE_1__["default"], {
     videoId: videoId,
     containerClassName: "playerContainer",

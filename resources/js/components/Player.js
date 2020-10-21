@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
 
 export default function Player() {
-    const [videoId, setVideoId] = useState();
+    const [videoId, setVideoId] = useState('dQw4w9WgXcQ');
 
     const options = {
         height: '100%',
@@ -17,7 +17,7 @@ export default function Player() {
     });
 
     return (
-        <div className="player w-75 center-children">
+        <div className="player w-75">
             <YouTube videoId={videoId} containerClassName="playerContainer" opts={options} />
         </div>
     );
