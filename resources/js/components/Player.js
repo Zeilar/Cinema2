@@ -4,7 +4,7 @@ import YouTube from 'react-youtube';
 import Icon from '@mdi/react';
 
 export default function Player() {
-    const [videoId, setVideoId] = useState('dQw4w9WgXcQ');
+    const [videoId, setVideoId] = useState();
     const [channel, setChannel] = useState();
     const youtube = useRef();
     const input = useRef();
@@ -93,9 +93,7 @@ export default function Player() {
                 if (videoId === data[0].videoId) return;
                 setVideoId(data[0].videoId);
             })
-            .listen('PlayVideo', ({ videoId }) => {
-                setVideoId(videoId);
-            })
+            .listen('PlayVideo', ({ videoId }) => setVideoId(videoId ?? 'dQw4w9WgXcQ'))
             .listenForWhisper('skip', e => skip(e.direction, false))
             .listenForWhisper('pause', () => pause(false))
             .listenForWhisper('play', () => play(false))
