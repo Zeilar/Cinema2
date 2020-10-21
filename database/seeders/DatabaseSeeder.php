@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Video;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Video::create(['video_id' => 'dQw4w9WgXcQ']);
     }
 }

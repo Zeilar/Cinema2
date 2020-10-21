@@ -28,6 +28,8 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@mdi/js": "^5.7.55",
+        "@mdi/react": "^1.4.0",
         "laravel-echo": "^1.9.0",
         "mix-env-file": "^0.1.0",
         "pusher-js": "^7.0.0",

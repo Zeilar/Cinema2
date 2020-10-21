@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::resource('users', UsersController::class)->except(['edit', 'create', 'destroy', 'update']);
-Route::post('videos/{video}', [VideosController::class, 'play']);
+Route::post('videos', [VideosController::class, 'play']);
 Route::get('videos', [VideosController::class, 'index']);
 
 Route::get('authenticate', function() {

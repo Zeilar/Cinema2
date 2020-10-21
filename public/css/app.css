@@ -26,6 +26,7 @@ button {
   border-radius: 5px;
   background: none;
   cursor: pointer;
+  color: inherit;
   padding: 5px;
   height: 40px;
   width: 40px;
@@ -37,13 +38,26 @@ button:hover {
   background-color: rgba(75, 75, 75, 0.75);
 }
 
+.loading {
+  width: 50px;
+}
+
 .player {
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.25);
   background-color: #1e1e1e;
-  margin: 0 15px;
+  margin-right: 15px;
 }
 
 .playerContainer {
   height: 100%;
+}
+
+.playerInput {
+  width: 30%;
+}
+
+.playerInputHeader {
+  font-size: 1.25rem;
 }
 
 @font-face {
@@ -89,8 +103,8 @@ button:hover {
 }
 
 .chat {
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.25);
   background-color: #1e1e1e;
-  border: 1px solid #323232;
   flex: 1;
 }
 
@@ -104,10 +118,27 @@ button:hover {
   color: #00b365;
 }
 
+::-moz-placeholder {
+  -moz-user-select: none;
+       user-select: none;
+}
+
+:-ms-input-placeholder {
+  -ms-user-select: none;
+      user-select: none;
+}
+
+::placeholder {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 #app {
   background-color: #191919;
-  padding: 5% 15px;
   color: white;
+  padding: 15px;
   height: 100vh;
 }
 

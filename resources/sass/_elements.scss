@@ -25,6 +25,7 @@ button {
     border-radius: 5px;
     background: none;
     cursor: pointer;
+    color: inherit;
     padding: 5px;
     height: 40px;
     width: 40px;
@@ -34,4 +35,8 @@ button {
     &:hover {
         background-color: rgba(75, 75, 75, 0.75);
     }
+}
+
+.loading {
+    width: 50px;
 }

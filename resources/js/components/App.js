@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { mdiLoading } from '@mdi/js';
 import NewUser from './NewUser';
 import Player from './Player';
+import Icon from '@mdi/react';
 import Chat from './Chat';
 
 export default function App() {
@@ -24,7 +26,7 @@ export default function App() {
         if (!user) authenticate();
     }, [user, authenticate]);
 
-    const render = () => {
+    function render() {
         return (
             <>
                 {
@@ -39,5 +41,5 @@ export default function App() {
         )
     }
 
-    return !loading && render();
+    return loading ? <Icon className="loading center-self" path={mdiLoading} spin={1} /> : render();
 }

@@ -18,9 +18,10 @@ class VideosController extends Controller
         return response(Video::first(['video_id'])->pluck('video_id'));
     }
 
-    public function play(string $videoId)
+    public function play(Request $request)
     {
-        $video = Video::first()->update(['video_id' => $videoId]);
+        $video = Video::first();
+        $video->update(['video_id' => $request->videoId]);
         broadcast(new PlayVideo($video->video_id));
         return response(true);
     }
