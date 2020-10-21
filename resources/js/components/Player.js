@@ -39,7 +39,12 @@ export default function Player() {
             body: formData,
         };
 
-        await fetch(`${location.origin}/api/videos`, args).then(() => input.current.value = '');
+        await fetch(`${location.origin}/api/videos`, args)
+            .then(response => {
+                if (response.status === 200) {
+                    input.current.value = '';
+                }
+            });
     }
 
     async function play(whisperToOthers = true) {
