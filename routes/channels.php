@@ -8,5 +8,5 @@ Broadcast::channel('chat', function($user) {
 });
 
 Broadcast::channel('player', function($user) {
-    return ['user' => $user, 'videoId' => Video::first()->video_id];
+    return ['user' => $user];
 });

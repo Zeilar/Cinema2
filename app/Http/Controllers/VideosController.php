@@ -15,7 +15,7 @@ class VideosController extends Controller
      */
     public function index()
     {
-        return response(Video::first(['video_id'])->pluck('video_id'));
+        return response(['videoId' => Video::first()->video_id]);
     }
 
     public function play(Request $request)

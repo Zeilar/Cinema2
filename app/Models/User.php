@@ -12,4 +12,8 @@ class User extends Authenticatable
 
     public $timestamps = false;
     protected $guarded = [];
+
+    public function messages() {
+        return $this->belongsToMany(User::class);
+    }
 }

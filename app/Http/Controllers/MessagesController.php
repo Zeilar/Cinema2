@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Http\Middleware\LoggedIn;
 use Illuminate\Http\Request;
+use App\Events\NewMessage;
+use App\Models\Message;
 
 class MessagesController extends Controller
 {
+    public function __construct() {
+        $this->middleware(LoggedIn::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +20,7 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response(Message::all());
     }
 
     /**
@@ -35,51 +31,8 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Message $message)
-    {
-        //
+        $message = Message::create(['user_id' => auth()->user()->id, 'content' => $request->content]);
+        broadcast(new NewMessage($message));
+        return response([true]);
     }
 }

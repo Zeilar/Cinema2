@@ -14,6 +14,18 @@ export default function Player() {
         width: '100%',
     };
 
+    async function getVideoId() {
+        await fetch(`${location.origin}/api/video`, )
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+            })
+            .then(({ videoId }) => {
+                if (videoId) setVideoId(videoId);
+            });
+    }
+
     async function playVideo(e) {
         if (e.key !== 'Enter' || input.current?.value === '') return; // error message handling
 
@@ -39,7 +51,7 @@ export default function Player() {
             body: formData,
         };
 
-        await fetch(`${location.origin}/api/videos`, args)
+        await fetch(`${location.origin}/api/video`, args)
             .then(response => {
                 if (response.status === 200) {
                     input.current.value = '';
@@ -48,13 +60,11 @@ export default function Player() {
     }
 
     async function play(whisperToOthers = true) {
-        console.log('play', whisperToOthers);
         youtube.current.internalPlayer.playVideo();
         if (whisperToOthers) channel?.whisper('play', { play: true });
     }
 
     async function pause(whisperToOthers = true) {
-        console.log('pause', whisperToOthers);
         youtube.current.internalPlayer.pauseVideo();
         if (whisperToOthers) channel?.whisper('pause', { pause: true });
     }
@@ -93,7 +103,6 @@ export default function Player() {
         const channel = window.Echo.join('player')
             .here(data => {
                 if (videoId === data[0].videoId) return;
-                setVideoId(data[0].videoId);
             })
             .listen('PlayVideo', ({ videoId }) => setVideoId(videoId))
             .listenForWhisper('skip', e => skip(e.direction, false))
@@ -102,6 +111,7 @@ export default function Player() {
             .listenForWhisper('sync', e => sync(e.timestamp, false))
             .listenForWhisper('restart', () => restart(false));
         setChannel(channel);
+        if (videoId == null) getVideoId();
     }, [setChannel, play, restart, sync, pause, skip, videoId, setVideoId, youtube, YouTube]);
 
     return (

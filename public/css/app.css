@@ -103,9 +103,29 @@ button:hover {
 }
 
 .chat {
+  flex: 1;
+}
+
+.messagesWrapper,
+.chatInput {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.25);
   background-color: #1e1e1e;
-  flex: 1;
+}
+
+.message {
+  align-items: baseline;
+}
+
+.message:nth-child(even) {
+  background-color: #141414;
+}
+
+.messageTime {
+  color: #969696;
+}
+
+.messageAuthor {
+  font-weight: bold;
 }
 
 ::-moz-selection {
