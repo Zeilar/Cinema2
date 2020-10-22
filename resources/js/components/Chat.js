@@ -11,7 +11,7 @@ export default function Chat() {
     const input = useRef();
 
     async function getMessages() {
-        await fetch(`${location.origin}/api/messages`)
+        return await fetch(`${location.origin}/api/messages`)
             .then(response => {
                 if (response.status === 200) {
                     return response.json();
@@ -52,6 +52,7 @@ export default function Chat() {
     }
 
     useEffect(() => {
+        if (messages == null) getMessages();
         if (channel == null) {
             const channel = window.Echo.join('chat')
                 .here(users => {
@@ -61,7 +62,6 @@ export default function Chat() {
                 .listen('NewMessage', ({ messages }) => setMessages(messages.reverse()));
             setChannel(channel);
         }
-        if (messages == null) getMessages();
         chatbox.current?.scrollTo(0, 9999);
     }, [setLoading, messages, channel, setChannel, getMessages, chatbox]);
 
