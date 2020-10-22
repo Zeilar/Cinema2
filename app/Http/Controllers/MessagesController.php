@@ -31,8 +31,8 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        Message::create(['user_id' => auth()->user()->id, 'content' => $request->content]);
-        broadcast(new NewMessage(Message::latest()->limit(Message::$CHAT_MAX)->get()));
+        $message = Message::create(['user_id' => auth()->user()->id, 'content' => $request->content]);
+        broadcast(new NewMessage($message));
         return response(true);
     }
 }

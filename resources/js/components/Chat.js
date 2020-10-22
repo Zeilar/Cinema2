@@ -7,17 +7,21 @@ export default function Chat() {
     const [messages, setMessages] = useState();
     const [channel, setChannel] = useState();
     const [users, setUsers] = useState();
-    const chatbox = useRef();
+    const messagesRef = useRef();
     const input = useRef();
 
+    messagesRef.current = messages;
+
     async function getMessages() {
-        return await fetch(`${location.origin}/api/messages`)
+        await fetch(`${location.origin}/api/messages`)
             .then(response => {
                 if (response.status === 200) {
                     return response.json();
                 }
             })
-            .then(messages => setMessages(messages.reverse()));
+            .then(test => {
+                setMessages(test);
+            });
     }
 
     async function chatSend(e) {
@@ -25,7 +29,6 @@ export default function Chat() {
 
         const formData = new FormData();
         formData.append('content', input.current.value);
-        input.current.value = '';
 
         const args = {
             method: 'POST',
@@ -38,32 +41,20 @@ export default function Chat() {
         await fetch(`${location.origin}/api/messages`, args);
     }
 
-    function addMessage(existingMessages, messageToAdd) {
-        if (existingMessages?.length >= 30) {
-            console.log(existingMessages);
-            existingMessages = existingMessages.filter(message => message !== existingMessages[0]);
-            console.log(existingMessages);
-            existingMessages.push(messageToAdd);
-            console.log(existingMessages);
-            setMessages(existingMessages);
-        } else {
-            setMessages(p => [...p, message]);
-        }
+    function addMessage(message) {
+        setMessages(p => [...p, message]);
     }
 
     useEffect(() => {
-        if (messages == null) getMessages();
-        if (channel == null) {
-            const channel = window.Echo.join('chat')
-                .here(users => {
-                    setLoading(false);
-                    if (users == null) setUsers(users?.map(obj => obj.user.username));
-                })
-                .listen('NewMessage', ({ messages }) => setMessages(messages.reverse()));
-            setChannel(channel);
-        }
-        chatbox.current?.scrollTo(0, 9999);
-    }, [setLoading, messages, channel, setChannel, getMessages, chatbox]);
+        getMessages();
+        const channel = window.Echo.join('chat')
+            .here(users => {
+                setLoading(false);
+                if (users == null) setUsers(users?.map(obj => obj.user.username));
+            })
+            .listen('NewMessage', ({ message }) => addMessage(message));
+        setChannel(channel);
+    }, []);
 
     const messageRender = (message) => {
         const date = new Date(message.created_at);
@@ -87,7 +78,7 @@ export default function Chat() {
     const render = () => {
         return (
             <>
-                <div className="messagesWrapper overflow-auto flex col" ref={chatbox}>
+                <div className="messagesWrapper overflow-auto flex col">
                     {messages?.map(message => messageRender(message))}
                 </div>
                 <div className="chatInput p-2 mt-2">
