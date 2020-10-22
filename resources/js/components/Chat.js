@@ -5,10 +5,10 @@ import Icon from '@mdi/react';
 export default function Chat() {
     const [loading, setLoading] = useState(true);
     const [messages, setMessages] = useState();
-    const [channel, setChannel] = useState();
+    const [input, setInput] = useState('');
     const [users, setUsers] = useState();
     const messagesRef = useRef();
-    const input = useRef();
+    const chatbox = useRef();
 
     messagesRef.current = messages;
 
@@ -19,16 +19,17 @@ export default function Chat() {
                     return response.json();
                 }
             })
-            .then(test => {
-                setMessages(test);
+            .then(messages => {
+                console.log(messages);
+                setMessages(messages);
             });
     }
 
     async function chatSend(e) {
-        if (e.key !== 'Enter' || input.current.value === '') return;
-
+        e.preventDefault();
         const formData = new FormData();
-        formData.append('content', input.current.value);
+        formData.append('content', input);
+        setInput('');
 
         const args = {
             method: 'POST',
@@ -46,14 +47,17 @@ export default function Chat() {
     }
 
     useEffect(() => {
+        chatbox.current?.scrollTo(0, 99999);
+    });
+
+    useEffect(() => {
         getMessages();
-        const channel = window.Echo.join('chat')
+        window.Echo.join('chat')
             .here(users => {
                 setLoading(false);
                 if (users == null) setUsers(users?.map(obj => obj.user.username));
             })
             .listen('NewMessage', ({ message }) => addMessage(message));
-        setChannel(channel);
     }, []);
 
     const messageRender = (message) => {
@@ -78,12 +82,12 @@ export default function Chat() {
     const render = () => {
         return (
             <>
-                <div className="messagesWrapper overflow-auto flex col">
+                <div className="messagesWrapper flex col" ref={chatbox}>
                     {messages?.map(message => messageRender(message))}
                 </div>
-                <div className="chatInput p-2 mt-2">
-                    <input className="border-0 w-100" placeholder="Aa" ref={input} onKeyDown={chatSend} />
-                </div>
+                <form className="chatInput p-2 mt-2" onSubmit={chatSend}>
+                    <input className="border-0 w-100" placeholder="Aa" value={input} onChange={(e) => setInput(e.target.value)} />
+                </form>
             </>
         );
     }

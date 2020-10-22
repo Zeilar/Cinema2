@@ -8,6 +8,10 @@
     background-color: rgb(30, 30, 30);
 }
 
+.messagesWrapper {
+    overflow-y: auto;
+}
+
 .message {
     align-items: baseline;
 

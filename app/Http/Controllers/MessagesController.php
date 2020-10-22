@@ -10,7 +10,7 @@ use App\Models\Message;
 class MessagesController extends Controller
 {
     public function __construct() {
-        $this->middleware(LoggedIn::class);
+        // $this->middleware(LoggedIn::class);
     }
 
     /**
