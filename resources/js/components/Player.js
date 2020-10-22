@@ -100,17 +100,19 @@ export default function Player() {
     }
 
     useEffect(() => {
-        const channel = window.Echo.join('player')
-            .here(data => {
-                if (videoId === data[0].videoId) return;
-            })
-            .listen('PlayVideo', ({ videoId }) => setVideoId(videoId))
-            .listenForWhisper('skip', e => skip(e.direction, false))
-            .listenForWhisper('pause', () => pause(false))
-            .listenForWhisper('play', () => play(false))
-            .listenForWhisper('sync', e => sync(e.timestamp, false))
-            .listenForWhisper('restart', () => restart(false));
-        setChannel(channel);
+        if (channel == null) {
+            const channel = window.Echo.join('player')
+                .here(data => {
+                    if (videoId === data[0].videoId) return;
+                })
+                .listen('PlayVideo', ({ videoId }) => setVideoId(videoId))
+                .listenForWhisper('skip', e => skip(e.direction, false))
+                .listenForWhisper('pause', () => pause(false))
+                .listenForWhisper('play', () => play(false))
+                .listenForWhisper('sync', e => sync(e.timestamp, false))
+                .listenForWhisper('restart', () => restart(false));
+            setChannel(channel);
+        }
         if (videoId == null) getVideoId();
     }, [setChannel, play, restart, sync, pause, skip, videoId, setVideoId, youtube, YouTube]);
 

@@ -116,8 +116,8 @@ button:hover {
   align-items: baseline;
 }
 
-.message:nth-child(even) {
-  background-color: #141414;
+.message:nth-child(odd) {
+  background-color: #191919;
 }
 
 .messageTime {
@@ -153,6 +153,18 @@ button:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00b365;
 }
 
 #app {

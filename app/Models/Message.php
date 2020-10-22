@@ -9,7 +9,7 @@ class Message extends Model
 {
     use HasFactory;
 
-    public static int $CHAT_MAX = 30;
+    public static int $CHAT_MAX = 50;
     protected $appends = ['user'];
     protected $guarded = [];
 

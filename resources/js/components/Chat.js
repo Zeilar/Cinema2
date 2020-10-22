@@ -5,7 +5,9 @@ import Icon from '@mdi/react';
 export default function Chat() {
     const [loading, setLoading] = useState(true);
     const [messages, setMessages] = useState();
+    const [channel, setChannel] = useState();
     const [users, setUsers] = useState();
+    const chatbox = useRef();
     const input = useRef();
 
     async function getMessages() {
@@ -15,7 +17,7 @@ export default function Chat() {
                     return response.json();
                 }
             })
-            .then(messages => setMessages(messages));
+            .then(messages => setMessages(messages.reverse()));
     }
 
     async function chatSend(e) {
@@ -23,6 +25,7 @@ export default function Chat() {
 
         const formData = new FormData();
         formData.append('content', input.current.value);
+        input.current.value = '';
 
         const args = {
             method: 'POST',
@@ -35,15 +38,32 @@ export default function Chat() {
         await fetch(`${location.origin}/api/messages`, args);
     }
 
+    function addMessage(existingMessages, messageToAdd) {
+        if (existingMessages?.length >= 30) {
+            console.log(existingMessages);
+            existingMessages = existingMessages.filter(message => message !== existingMessages[0]);
+            console.log(existingMessages);
+            existingMessages.push(messageToAdd);
+            console.log(existingMessages);
+            setMessages(existingMessages);
+        } else {
+            setMessages(p => [...p, message]);
+        }
+    }
+
     useEffect(() => {
-        window.Echo.join('chat')
-            .here(users => {
-                setLoading(false);
-                if (users == null) setUsers(users?.map(obj => obj.user.username));
-            })
-            .listen('NewMessage', e => console.log(e));
+        if (channel == null) {
+            const channel = window.Echo.join('chat')
+                .here(users => {
+                    setLoading(false);
+                    if (users == null) setUsers(users?.map(obj => obj.user.username));
+                })
+                .listen('NewMessage', ({ messages }) => setMessages(messages.reverse()));
+            setChannel(channel);
+        }
         if (messages == null) getMessages();
-    }, [setLoading, messages, getMessages]);
+        chatbox.current?.scrollTo(0, 9999);
+    }, [setLoading, messages, channel, setChannel, getMessages, chatbox]);
 
     const messageRender = (message) => {
         const date = new Date(message.created_at);
@@ -67,7 +87,7 @@ export default function Chat() {
     const render = () => {
         return (
             <>
-                <div className="messagesWrapper flex col">
+                <div className="messagesWrapper overflow-auto flex col" ref={chatbox}>
                     {messages?.map(message => messageRender(message))}
                 </div>
                 <div className="chatInput p-2 mt-2">
