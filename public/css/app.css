@@ -54,6 +54,7 @@ button[disabled] {
 
 .newUser {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
+  background-color: #1e1e1e;
   padding: 30px;
 }
 
