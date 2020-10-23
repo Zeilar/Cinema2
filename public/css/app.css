@@ -15,6 +15,7 @@ input {
   padding: 10px;
   height: 30px;
   outline: 0;
+  border: 0;
 }
 
 svg {
@@ -22,24 +23,65 @@ svg {
 }
 
 button {
-  transition: all 0.1s linear;
-  border-radius: 5px;
   background: none;
+  font-size: 1rem;
   cursor: pointer;
   color: inherit;
   padding: 5px;
-  height: 40px;
-  width: 40px;
   outline: 0;
   border: 0;
 }
 
-button:hover {
+button.btn {
+  transition: all 0.1s linear;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+}
+
+button.btn:hover {
   background-color: rgba(75, 75, 75, 0.75);
+}
+
+button[disabled] {
+  pointer-events: none;
+  cursor: default;
 }
 
 .loading {
   width: 50px;
+}
+
+.newUser {
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+}
+
+.newUserHeader {
+  font-size: 1.5rem;
+}
+
+.newUserInput,
+.newUserSubmit {
+  box-shadow: 0 0 0 1px #00b365;
+  font-size: 1.5rem;
+  height: 40px;
+}
+
+.newUserSubmit {
+  background-color: #00b365;
+  border-radius: 10px;
+  padding: 5px 20px;
+}
+
+.newUserSubmit svg {
+  width: 100%;
+}
+
+.newUserSubmit.spin {
+  background-color: rgba(0, 179, 101, 0.5);
+  padding: 5px;
+  width: 40px;
 }
 
 .player {

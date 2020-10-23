@@ -1,0 +1,31 @@
+.newUser {
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+
+.newUserHeader {
+    font-size: 1.5rem;
+}
+
+.newUserInput,
+.newUserSubmit {
+    box-shadow: 0 0 0 1px $primary;
+    font-size: 1.5rem;
+    height: 40px;
+}
+
+.newUserSubmit {
+    background-color: $primary;
+    border-radius: 10px;
+    padding: 5px 20px;
+
+    svg {
+        width: 100%;
+    }
+
+    &.spin {
+        background-color: $primaryTransparent;
+        padding: 5px;
+        width: 40px;
+    }
+}

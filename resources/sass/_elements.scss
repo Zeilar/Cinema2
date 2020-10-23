@@ -14,6 +14,7 @@ input {
     padding: 10px;
     height: 30px;
     outline: 0;
+    border: 0;
 }
 
 svg {
@@ -21,19 +22,28 @@ svg {
 }
 
 button {
-    transition: all 0.1s linear;
-    border-radius: 5px;
     background: none;
+    font-size: 1rem;
     cursor: pointer;
     color: inherit;
     padding: 5px;
-    height: 40px;
-    width: 40px;
     outline: 0;
     border: 0;
 
-    &:hover {
-        background-color: rgba(75, 75, 75, 0.75);
+    &.btn {
+        transition: all 0.1s linear;
+        border-radius: 5px;
+        height: 40px;
+        width: 40px;
+
+        &:hover {
+            background-color: rgba(75, 75, 75, 0.75);
+        }
+    }
+
+    &[disabled] {
+        pointer-events: none;
+        cursor: default;
     }
 }
 

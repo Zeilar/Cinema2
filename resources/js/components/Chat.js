@@ -89,7 +89,7 @@ export default function Chat() {
                     {messages?.map(message => messageRender(message))}
                 </div>
                 <form className="chatInput p-2 mt-2" onSubmit={chatSend}>
-                    <input className="border-0 w-100" placeholder="Aa" value={input} onChange={(e) => setInput(e.target.value)} />
+                    <input className="w-100" placeholder="Aa" value={input} onChange={(e) => setInput(e.target.value)} />
                 </form>
             </>
         );

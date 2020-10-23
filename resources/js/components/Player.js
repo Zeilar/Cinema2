@@ -6,8 +6,8 @@ import Icon from '@mdi/react';
 export default function Player() {
     const [videoId, setVideoId] = useState();
     const [channel, setChannel] = useState();
+    const [input, setInput] = useState('');
     const youtube = useRef();
-    const input = useRef();
 
     const options = {
         height: '100%',
@@ -27,13 +27,15 @@ export default function Player() {
     }
 
     async function playVideo(e) {
-        if (e.key !== 'Enter' || input.current?.value === '') return; // error message handling
+        e.preventDefault();
+
+        if (input === '') return alert('sdfnsfd');
 
         let url = '';
         try {
-            url = new URL(input.current.value);
+            url = new URL(input);
         } catch (e) {
-            return alert('Invalid URL, please try again\nMake sure it contains "v="'); // error message handling
+            return alert('Invalid URL, please try again\n\nAnd make sure it contains "v=" anywhere');
         }
         const parameters = new URLSearchParams(url.search);
         const videoId = parameters.get('v');
@@ -51,12 +53,9 @@ export default function Player() {
             body: formData,
         };
 
-        await fetch(`${location.origin}/api/video`, args)
-            .then(response => {
-                if (response.status === 200) {
-                    input.current.value = '';
-                }
-            });
+        await fetch(`${location.origin}/api/video`, args);
+
+        setInput('');
     }
 
     async function play(whisperToOthers = true) {
@@ -118,35 +117,35 @@ export default function Player() {
 
     return (
         <div className="player w-75 col">
-            <div className="playerInputWrapper row mt-2 mb-2 center-children">
+            <form className="playerInputWrapper row mt-2 mb-2 center-children" onSubmit={playVideo}>
                 <h1 className="playerInputHeader mr-2">
                     Suggest a video
                 </h1>
                 <input
-                    className="playerInput border-0" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    ref={input} onKeyDown={playVideo}
+                    className="playerInput" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    onChange={(e) => setInput(e.target.value)} value={input}
                 />
-            </div>
+            </form>
 
             <YouTube ref={youtube} videoId={videoId} containerClassName="playerContainer" opts={options} />
 
             <div className="playerControls row mt-2 mb-2 center-children">
-                <button title="Restart" onClick={() => restart()}>
+                <button className="btn" title="Restart" onClick={() => restart()}>
                     <Icon path={mdiSkipBackward} />
                 </button>
-                <button title="Skip backward 15 seconds" onClick={() => skip('backward')}>
+                <button className="btn" title="Skip backward 15 seconds" onClick={() => skip('backward')}>
                     <Icon path={mdiSkipPrevious} />
                 </button>
-                <button title="Play" onClick={() => play()}>
+                <button className="btn" title="Play" onClick={() => play()}>
                     <Icon path={mdiPlay} />
                 </button>
-                <button title="Pause" onClick={() => pause()}>
+                <button className="btn" title="Pause" onClick={() => pause()}>
                     <Icon path={mdiPause} />
                 </button>
-                <button title="Skip forward 15 seconds" onClick={() => skip('forward')}>
+                <button className="btn" title="Skip forward 15 seconds" onClick={() => skip('forward')}>
                     <Icon path={mdiSkipNext} />
                 </button>
-                <button title="Sync with party" onClick={() => sync()}>
+                <button className="btn" title="Sync with party" onClick={() => sync()}>
                     <Icon path={mdiSync} />
                 </button>
             </div>
