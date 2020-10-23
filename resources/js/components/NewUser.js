@@ -7,6 +7,11 @@ export default function NewUser({ setUser }) {
     const [loading, setLoading] = useState(false);
     const [input, setInput] = useState('');
 
+    function loginSubmitHandler(e) {
+        e.preventDefault();
+        login();
+    }
+
     async function login() {
         setLoading(true);
 
@@ -49,8 +54,8 @@ export default function NewUser({ setUser }) {
                 Welcome to Cinema! Enter a name you wish to use.
             </h1>
 
-            <div className="newUserForm mt-3 row">
-                {usernameError && <p className="formError">{usernameError}</p>}
+            {usernameError && <p className="formError">{usernameError}</p>}
+            <form className="newUserForm mt-3 row" onSubmit={loginSubmitHandler}>
                 <input className="newUserInput mr-3" onChange={(e) => setInput(e.target.value)} placeholder="John Smith" />
                 {
                     !loading
@@ -61,7 +66,7 @@ export default function NewUser({ setUser }) {
                             <Icon path={mdiLoading} spin={1} />
                         </button>
                 }
-            </div>
+            </form>
         </div>
     );
 }
