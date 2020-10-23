@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 
 export default function NewUser({ setUser }) {
     const [usernameError, setUsernameError] = useState();
-    const input = useRef();
+    const [input, setInput] = useState('');
 
     async function login() {
         const formData = new FormData();
-        formData.append('username', input.current.value);
+        formData.append('username', input);
 
         const args = {
             method: 'POST',
@@ -45,7 +45,7 @@ export default function NewUser({ setUser }) {
             <div className="newUserForm">
                 <div className="newUserFormUsername">
                     {usernameError && <p className="formError">{usernameError}</p>}
-                    <input type="text" ref={input} />
+                    <input onChange={(e) => setInput(e.target.value)} />
                 </div>
             </div>
 

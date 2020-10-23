@@ -43,7 +43,7 @@ export default function Chat() {
 
     useEffect(() => {
         chatbox.current?.scrollTo(0, 99999);
-    }, [chatbox.current]);
+    }, [chatbox.current, messages]);
 
     useEffect(() => {
         getMessages();
