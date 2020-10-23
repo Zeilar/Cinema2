@@ -55,7 +55,7 @@ export default function Chat() {
             .listen('NewMessage', ({ message }) => {
                 setMessages(p => {
                     let messages = p;
-                    messages.shift();
+                    if (messages?.length >= 50) messages.shift();
                     return [...messages, message];
                 });
             });
