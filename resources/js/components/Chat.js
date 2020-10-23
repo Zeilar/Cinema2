@@ -19,10 +19,7 @@ export default function Chat() {
                     return response.json();
                 }
             })
-            .then(messages => {
-                console.log(messages);
-                setMessages(messages);
-            });
+            .then(messages => setMessages(messages));
     }
 
     async function chatSend(e) {
@@ -42,10 +39,6 @@ export default function Chat() {
         await fetch(`${location.origin}/api/messages`, args);
     }
 
-    function addMessage(message) {
-        setMessages(p => [...p, message]);
-    }
-
     useEffect(() => {
         chatbox.current?.scrollTo(0, 99999);
     });
@@ -57,7 +50,13 @@ export default function Chat() {
                 setLoading(false);
                 if (users == null) setUsers(users?.map(obj => obj.user.username));
             })
-            .listen('NewMessage', ({ message }) => addMessage(message));
+            .listen('NewMessage', ({ message }) => {
+                setMessages(p => {
+                    let messages = p;
+                    messages.shift();
+                    return [...messages, message];
+                });
+            });
     }, []);
 
     const messageRender = (message) => {
