@@ -20,7 +20,7 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        return response(Message::latest()->limit(Message::$CHAT_MAX)->get());
+        return response(Message::latest()->limit(Message::$CHAT_MAX)->get()->reverse()->flatten());
     }
 
     /**
