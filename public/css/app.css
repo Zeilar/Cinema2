@@ -91,6 +91,15 @@ button[disabled] {
   margin-right: 15px;
 }
 
+@media (max-width: 1200px) {
+  .player {
+    margin-bottom: 15px;
+    margin-right: 0;
+    height: 100vh;
+    width: 100%;
+  }
+}
+
 .playerContainer {
   height: 100%;
 }
@@ -99,8 +108,20 @@ button[disabled] {
   width: 30%;
 }
 
+@media (max-width: 1200px) {
+  .playerInput {
+    width: 50%;
+  }
+}
+
 .playerInputHeader {
   font-size: 1.25rem;
+}
+
+@media (max-width: 1200px) {
+  .playerInputHeader {
+    font-size: 1rem;
+  }
 }
 
 @font-face {
@@ -147,6 +168,13 @@ button[disabled] {
 
 .chat {
   flex: 1;
+}
+
+@media (max-width: 1200px) {
+  .chat {
+    height: 50vh;
+    width: 100%;
+  }
 }
 
 .messagesWrapper,
@@ -219,6 +247,13 @@ button[disabled] {
   color: white;
   padding: 15px;
   height: 100vh;
+}
+
+@media (max-width: 1200px) {
+  #app {
+    flex-direction: column;
+    height: unset;
+  }
 }
 
 *,
