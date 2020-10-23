@@ -36,12 +36,14 @@ export default function Chat() {
             body: formData,
         };
 
+        chatbox.current?.scrollTo(0, 99999);
+
         await fetch(`${location.origin}/api/messages`, args);
     }
 
     useEffect(() => {
         chatbox.current?.scrollTo(0, 99999);
-    });
+    }, [chatbox.current]);
 
     useEffect(() => {
         getMessages();
@@ -61,7 +63,9 @@ export default function Chat() {
 
     const messageRender = (message) => {
         const date = new Date(message.created_at);
-        const parsedTime = `${date.getHours()}:${date.getMinutes()}`;
+        const minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
+        const hours = date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
+        const parsedTime = `${hours}:${minutes}`;
 
         return (
             <div className="message p-2 row wrap" key={message.id}>
