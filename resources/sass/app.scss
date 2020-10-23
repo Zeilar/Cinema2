@@ -8,8 +8,11 @@
 @import './chat';
 @import './misc';
 
-#app {
+:root {
     background-color: $bgColor;
+}
+
+#app {
     color: white;
     padding: 15px;
     height: 100vh;

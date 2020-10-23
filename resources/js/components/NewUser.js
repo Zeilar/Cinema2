@@ -54,7 +54,7 @@ export default function NewUser({ setUser }) {
                 Welcome to Cinema! Enter a name you wish to use.
             </h1>
 
-            {usernameError && <p className="formError">{usernameError}</p>}
+            {usernameError && <p className="formError mt-3">{usernameError}</p>}
             <form className="newUserForm mt-3 row" onSubmit={loginSubmitHandler}>
                 <input className="newUserInput mr-3" onChange={(e) => setInput(e.target.value)} placeholder="John Smith" />
                 {

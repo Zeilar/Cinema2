@@ -69,6 +69,13 @@ button[disabled] {
   height: 40px;
 }
 
+@media (max-width: 1200px) {
+  .newUserInput,
+  .newUserSubmit {
+    font-size: 1rem;
+  }
+}
+
 .newUserSubmit {
   background-color: #00b365;
   border-radius: 10px;
@@ -83,6 +90,18 @@ button[disabled] {
   background-color: rgba(0, 179, 101, 0.5);
   padding: 5px;
   width: 40px;
+}
+
+@media (max-width: 1200px) {
+  .newUserSubmit {
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+
+.formError {
+  margin-bottom: -15px;
+  color: red;
 }
 
 .player {
@@ -242,8 +261,11 @@ button[disabled] {
   background: #00b365;
 }
 
-#app {
+:root {
   background-color: #191919;
+}
+
+#app {
   color: white;
   padding: 15px;
   height: 100vh;

@@ -13,6 +13,10 @@
     box-shadow: 0 0 0 1px $primary;
     font-size: 1.5rem;
     height: 40px;
+
+    @media (max-width: 1200px) {
+        font-size: 1rem;
+    }
 }
 
 .newUserSubmit {
@@ -29,4 +33,14 @@
         padding: 5px;
         width: 40px;
     }
+    
+    @media (max-width: 1200px) {
+        align-items: center;
+        white-space: nowrap;
+    }
+}
+
+.formError {
+    margin-bottom: -15px;
+    color: red;
 }
