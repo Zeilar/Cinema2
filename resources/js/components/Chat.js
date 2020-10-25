@@ -152,7 +152,7 @@ export default function Chat({ user }) {
                                     </div>
                             }
 
-                            <button className="btn" style={{ color: userColor }} onClick={() => setColorPicker(p => !p)}>
+                            <button className="btn bold" style={{ color: userColor }} onClick={() => setColorPicker(p => !p)}>
                                 {user.username}
                             </button>
                         </div>

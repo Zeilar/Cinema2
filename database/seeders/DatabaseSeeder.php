@@ -17,11 +17,15 @@ class DatabaseSeeder extends Seeder
     {
         Video::create(['video_id' => 'dQw4w9WgXcQ']);
 
-        Color::create(['value' => 'rgb(200, 0, 0)']);
-        Color::create(['value' => 'rgb(0, 200, 0)']);
-        Color::create(['value' => 'rgb(0, 0, 200)']);
+        Color::create(['value' => 'rgb(127, 255, 127)']);
+        Color::create(['value' => 'rgb(255, 127, 0)']);
+        Color::create(['value' => 'rgb(255, 0, 127)']);
+        Color::create(['value' => 'rgb(0, 255, 127)']);
         Color::create(['value' => 'rgb(200, 200, 0)']);
+        Color::create(['value' => 'rgb(127, 0, 127)']);
         Color::create(['value' => 'rgb(0, 200, 200)']);
         Color::create(['value' => 'rgb(200, 0, 200)']);
+        Color::create(['value' => 'rgb(200, 0, 0)']);
+        Color::create(['value' => 'rgb(0, 200, 0)']);
     }
 }
