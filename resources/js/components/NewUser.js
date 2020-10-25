@@ -17,7 +17,6 @@ export default function NewUser({ setUser }) {
 
         const formData = new FormData();
         formData.append('username', input);
-        
 
         const args = {
             method: 'POST',
@@ -27,6 +26,7 @@ export default function NewUser({ setUser }) {
             },
             body: formData,
         };
+        
         await fetch(`${location.origin}/api/users`, args)
             .then(response => {
                 if (response.status === 200 || response.status === 422) {
@@ -35,17 +35,15 @@ export default function NewUser({ setUser }) {
             })
             .then(data => {
                 setLoading(false);
-
-                if (data.errors) {
-                    setUsernameError(data.errors.username[0]);
-                }
-
-                if (data.user) {
+                if (data?.user) {
                     setUsernameError(false);
-                    setUser(true);
+                    setUser(data.user);
+                } else if (data?.errors) {
+                    setUsernameError(data.errors.username[0]);
+                } else {
+                    setUsernameError('Something went wrong!');
                 }
             });
-
     }
 
     return (

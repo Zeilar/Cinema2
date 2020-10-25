@@ -22,6 +22,7 @@ svg {
 }
 
 button {
+    user-select: none;
     background: none;
     font-size: 1rem;
     cursor: pointer;
@@ -30,20 +31,20 @@ button {
     outline: 0;
     border: 0;
 
-    &.btn {
-        transition: all 0.1s linear;
-        border-radius: 5px;
-        height: 40px;
-        width: 40px;
-
-        &:hover {
-            background-color: rgba(75, 75, 75, 0.75);
-        }
-    }
-
     &[disabled] {
         pointer-events: none;
         cursor: default;
+    }
+}
+
+.btn {
+    transition: all 0.1s linear;
+    border-radius: 5px;
+    min-height: 40px;
+    min-width: 40px;
+
+    &:hover {
+        background-color: rgba(75, 75, 75, 0.75);
     }
 }
 

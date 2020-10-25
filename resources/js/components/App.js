@@ -7,14 +7,14 @@ import Chat from './Chat';
 
 export default function App() {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState();
 
     async function authenticate() {
         await fetch('/api/authenticate')
             .then(response => response.status === 200 ? response.json() : false)
-            .then(authenticated => {
+            .then(user => {
                 setLoading(false);
-                if (authenticated) setUser(true);
+                if (user) setUser(user);
             })
             .catch(error => {
                 console.log(error);
@@ -24,7 +24,7 @@ export default function App() {
 
     useEffect(() => {
         if (!user) authenticate();
-    }, [user, authenticate]);
+    });
 
     function render() {
         return (
@@ -34,7 +34,7 @@ export default function App() {
                         ? <NewUser setUser={setUser} />
                         : <>
                             <Player />
-                            <Chat />
+                            <Chat user={user} />
                         </>
                 }
             </>

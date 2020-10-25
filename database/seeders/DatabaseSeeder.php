@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Video;
+use App\Models\Color;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,5 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Video::create(['video_id' => 'dQw4w9WgXcQ']);
+
+        Color::create(['value' => 'rgb(200, 0, 0)']);
+        Color::create(['value' => 'rgb(0, 200, 0)']);
+        Color::create(['value' => 'rgb(0, 0, 200)']);
+        Color::create(['value' => 'rgb(200, 200, 0)']);
+        Color::create(['value' => 'rgb(0, 200, 200)']);
+        Color::create(['value' => 'rgb(200, 0, 200)']);
     }
 }

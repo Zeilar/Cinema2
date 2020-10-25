@@ -1,16 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useOnclickOutside from 'react-cool-onclickoutside';
 import { mdiLoading } from '@mdi/js';
+import Message from './Message';
 import Icon from '@mdi/react';
 
-export default function Chat() {
+export default function Chat({ user }) {
+    const [userColor, setUserColor] = useState(user.color.value);
+    const [colorPicker, setColorPicker] = useState(false);
     const [loading, setLoading] = useState(true);
     const [messages, setMessages] = useState();
+    const [colors, setColors] = useState();
     const [input, setInput] = useState('');
     const [users, setUsers] = useState();
     const messagesRef = useRef();
     const chatbox = useRef();
 
     messagesRef.current = messages;
+
+    const clickOutsideColorPicker = useOnclickOutside(() => {
+        setColorPicker(false);
+    });
 
     async function getMessages() {
         await fetch(`${location.origin}/api/messages`)
@@ -19,11 +28,28 @@ export default function Chat() {
                     return response.json();
                 }
             })
-            .then(messages => setMessages(messages));
+            .then(messages => {
+                if (messages) setMessages(messages);
+            });
+    }
+
+    async function getColors() {
+        await fetch(`${location.origin}/api/colors`)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+            })
+            .then(colors => {
+                if (colors) setColors(colors);
+            });
     }
 
     async function chatSend(e) {
         e.preventDefault();
+
+        if (input === '') return;
+
         const formData = new FormData();
         formData.append('content', input);
         setInput('');
@@ -41,56 +67,101 @@ export default function Chat() {
         await fetch(`${location.origin}/api/messages`, args);
     }
 
+    async function changeColor(color) {
+        if (color.value === userColor) return;
+
+        const formData = new FormData();
+        formData.append('color', color.id);
+
+        const args = {
+            method: 'PUT',
+            headers: {
+                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
+            },
+            body: JSON.stringify(color.id),
+        };
+
+        await fetch(`${location.origin}/api/users/${user.id}/color`, args)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+            })
+            .then(color => {
+                if (color) setUserColor(color.value);
+            });
+    }
+
     useEffect(() => {
         chatbox.current?.scrollTo(0, 99999);
     }, [chatbox.current, messages]);
 
     useEffect(() => {
         getMessages();
+        getColors();
         window.Echo.join('chat')
             .here(users => {
+                setUsers(users?.map(({ user }) => user));
                 setLoading(false);
-                if (users == null) setUsers(users?.map(obj => obj.user.username));
             })
-            .listen('NewMessage', ({ message }) => {
+            .listen('NewMessage', async ({ message }) => {
+                const chatMax = await fetch(`${location.origin}/api/messages/chatmax`).then(response => response.json() ?? 50);
+
                 setMessages(p => {
-                    let messages = p;
-                    if (messages?.length >= 50) messages.shift();
+                    const messages = p;
+                    if (messages?.length >= chatMax) messages.shift();
                     return [...messages, message];
                 });
             });
     }, []);
 
-    const messageRender = (message) => {
-        const date = new Date(message.created_at);
-        const minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
-        const hours = date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
-        const parsedTime = `${hours}:${minutes}`;
-
-        return (
-            <div className="message p-2 row wrap" key={message.id}>
-                <time className="messageTime mr-1">
-                    {parsedTime}
-                </time>
-                <span className="messageAuthor mr-1">
-                    {message.user.username}:
-                </span>
-                <p className="messageContent">
-                    {message.content}
-                </p>
-            </div>
-        );
-    }
-
     const render = () => {
         return (
             <>
                 <div className="messagesWrapper flex col" ref={chatbox}>
-                    {messages?.map(message => messageRender(message))}
+                    {
+                        messages?.map(message => (
+                            <Message
+                                created_at={message.created_at} 
+                                content={message.content}
+                                user={message.user}
+                                key={message.id}
+                                id={message.id}
+                            />
+                        ))
+                    }
                 </div>
-                <form className="chatInput p-2 mt-2" onSubmit={chatSend}>
-                    <input className="w-100" placeholder="Aa" value={input} onChange={(e) => setInput(e.target.value)} />
-                </form>
+                <div className="chatControls p-2 mt-2 col">
+                    <form className="chatSendForm" onSubmit={chatSend}>
+                        <input className="chatInput w-100" placeholder="Aa" value={input} onChange={(e) => setInput(e.target.value)} />
+                    </form>
+
+                    <div className="chatButtons row mt-2">
+                        <div className="chatButton relative" ref={clickOutsideColorPicker}>
+                            {
+                                colorPicker && colors &&
+                                    <div className="colorPicker rounded absolute p-2">
+                                        {
+                                            colors.map(color => (
+                                                <button 
+                                                    className={`btn colorPickerItem w-fit m-1 ${color.value === userColor ? 'active' : ''}`} 
+                                                    style={{ backgroundColor: color.value }} key={color.id} onClick={() => changeColor(color)}
+                                                ></button>
+                                            ))
+                                        }
+                                    </div>
+                            }
+
+                            <button className="btn" style={{ color: userColor }} onClick={() => setColorPicker(p => !p)}>
+                                {user.username}
+                            </button>
+                        </div>
+
+                        <button className="btn chatSubmit ml-auto pl-2 pr-2" onClick={chatSend}>
+                            Send
+                        </button>
+                    </div>
+                </div>
             </>
         );
     }

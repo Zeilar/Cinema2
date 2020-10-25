@@ -35,4 +35,8 @@ class MessagesController extends Controller
         broadcast(new NewMessage($message));
         return response(true);
     }
+
+    public function getChatMax() {
+        return response(Message::$CHAT_MAX);
+    }
 }
