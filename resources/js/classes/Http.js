@@ -1,7 +1,6 @@
 export default class Http {
     static async request(method, url, args) {
         url = `${location.origin}/api/${url}`;
-
         const standard = {
             method: method,
             headers: {
@@ -9,13 +8,8 @@ export default class Http {
                 'X-CSRF-Token': document.querySelector('[name=csrf-token]')?.getAttribute('content'),
             },
         };
-
         const response = await fetch(url, {...standard, ...args});
-        if (response.status === 200 || response.status === 422) {
-            return response.json();
-        } else {
-            return false;
-        }
+        return response.status === 200 || response.status === 422 ? response.json() : false;
     }
 
     static async get(url) {
