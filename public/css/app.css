@@ -212,6 +212,7 @@ button[disabled] {
 }
 
 .messagesWrapper {
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -229,6 +230,10 @@ button[disabled] {
 
 .messageTime {
   color: #969696;
+}
+
+.messageContent {
+  word-break: break-word;
 }
 
 .chatSubmit {
@@ -258,15 +263,14 @@ button[disabled] {
 
 .messageDelete {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
-  transform: translateY(-50%);
   background-color: #282828;
   min-height: unset;
   min-width: unset;
   height: 25px;
   color: red;
   width: 25px;
-  right: 5px;
-  top: 50%;
+  right: 10px;
+  top: 10px;
 }
 
 .messageDelete:hover {
