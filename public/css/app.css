@@ -207,6 +207,7 @@ button[disabled] {
 }
 
 .chatInput {
+  font-size: 1.15rem;
   height: 40px;
 }
 
