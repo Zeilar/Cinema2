@@ -43,9 +43,7 @@ class InstallEmotes extends Command
      */
     public function handle()
     {
-
-        $directory = storage_path('app/public').'/emotes';
-        $emotes = glob($directory . "\*.png", GLOB_BRACE);
+        $emotes = glob(storage_path('app/public').'/emotes' . "\*.png", GLOB_BRACE);
         $emotesInstalled = 0;
         $this->line("<fg=yellow>Installing emotes...</>");
         $bar = $this->output->createProgressBar(count($emotes));
