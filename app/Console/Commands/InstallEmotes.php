@@ -43,23 +43,24 @@ class InstallEmotes extends Command
      */
     public function handle()
     {
+
         $directory = storage_path('app/public').'/emotes';
-        $images = glob($directory . "\*.png", GLOB_BRACE);
+        $emotes = glob($directory . "\*.png", GLOB_BRACE);
         $emotesInstalled = 0;
-        foreach($images as $image) {
-            $image = preg_match('/(.*\\\)+(.+)/', $image, $matches);
+        $this->line("<fg=yellow>Installing emotes...</>");
+        $bar = $this->output->createProgressBar(count($emotes));
+        $bar->start();
+        foreach($emotes as $emote) {
+            $emote = preg_match('/(.*\\\)+(.+)/', $emote, $matches);
             $path = $matches[2];
             $name = explode('.', $path)[0];
-            $this->line("<fg=yellow>Installing: $name...</>");
             if (!Emote::where('name', $name)->first()) {
                 Emote::create(['path' => $path, 'name' => $name]);
                 $emotesInstalled += 1;
-                $this->line("<fg=green>Installed: $name</>");
-            } else {
-                $this->line("<fg=red>$name already exists!</>");
             }
+            $bar->advance();
         }
-        $this->line("");
-        $this->line("<fg=green;bg=>Installed $emotesInstalled emotes.</>");
+        $bar->finish();
+        $this->line("\n<fg=green;bg=>Installed $emotesInstalled emotes.</>");
     }
 }
