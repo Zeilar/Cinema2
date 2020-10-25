@@ -17,7 +17,6 @@ class CreateEmotesTable extends Migration
             $table->id();
             $table->string('path')->unique();
             $table->string('name')->unique();
-            $table->timestamps();
         });
     }
 

@@ -10,8 +10,8 @@ export default function Chat({ user }) {
     const [colorPicker, setColorPicker] = useState(false);
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [emotes, setEmotes] = useState([]);
     const [colors, setColors] = useState([]);
+    const [emotes, setEmotes] = useState([]);
     const [input, setInput] = useState('');
     const [users, setUsers] = useState([]);
     const messagesRef = useRef();
@@ -29,6 +29,10 @@ export default function Chat({ user }) {
 
     async function getColors() {
         setColors(await Http.get('colors'));
+    }
+
+    async function getEmotes() {
+        setEmotes(await Http.get('emotes'));
     }
 
     async function chatSend(e) {
@@ -53,10 +57,6 @@ export default function Chat({ user }) {
 
         const result = await Http.put(`users/${user.id}/color`, { body: JSON.stringify(color.id) });
         if (result) setUserColor(color);
-    }
-
-    async function getEmotes() {
-        setEmotes(await Http.get('emotes'));
     }
 
     async function deleteMessage(id) {
@@ -100,6 +100,7 @@ export default function Chat({ user }) {
                                 content={message.content}
                                 user={message.user}
                                 key={message.id}
+                                emotes={emotes}
                                 id={message.id}
                             />
                         ))

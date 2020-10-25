@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { mdiTrashCan } from '@mdi/js';
 import Icon from '@mdi/react';
 
-export default function Message({ id, content, user, created_at, deletable, deleteMessage }) {
+export default function Message({ id, content, user, created_at, emotes, deletable, deleteMessage }) {
     const date = new Date(created_at);
     const minutes = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
     const hours = date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
@@ -21,8 +21,13 @@ export default function Message({ id, content, user, created_at, deletable, dele
                 setMention(true);
                 break;
             }
+            emotes.forEach(emote => {
+                if (fragments[i] === emote.name) {
+                    setFragments(p => p.map())
+                }
+            });
         }
-    }, [fragments]);
+    }, [fragments, emotes]);
 
     return (
         <div className={`message p-2 row wrap relative ${mention ? 'mention' : ''}`} key={id}>
