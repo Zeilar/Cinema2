@@ -8,21 +8,21 @@ export default function Message({ id, content, user, created_at, deletable, dele
     const hours = date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
     const parsedTime = `${hours}:${minutes}`;
 
+    const [fragments, setFragments] = useState([]);
     const [mention, setMention] = useState(false);
-    const [message, setMessage] = useState([]);
 
     useEffect(() => {
-        setMessage(content.split(' '));
+        setFragments(content.split(' '));
     }, [content]);
 
     useEffect(() => {
-        for (let i = 0; i < message.length; i++) {
-            if (message[i] === `@${user.username}`) {
+        for (let i = 0; i < fragments.length; i++) {
+            if (fragments[i] === `@${user.username}`) {
                 setMention(true);
                 break;
             }
         }
-    }, [message]);
+    }, [fragments]);
 
     return (
         <div className={`message p-2 row wrap relative ${mention ? 'mention' : ''}`} key={id}>
@@ -33,11 +33,7 @@ export default function Message({ id, content, user, created_at, deletable, dele
                 {user.username}:
             </span>
             <p className="messageContent">
-                {
-                    message?.map(fragment =>
-                        <span className="messageFragment" key={Math.random()}>{fragment} </span> // important whitespace
-                    )
-                }
+                {fragments.map(fragment => <span className="messageFragment" key={Math.random()}>{fragment} </span>) /* important whitespace */}
             </p>
             {
                 deletable &&

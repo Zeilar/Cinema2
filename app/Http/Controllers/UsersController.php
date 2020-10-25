@@ -45,6 +45,6 @@ class UsersController extends Controller
 
     public function changeColor(Request $request, User $user) {
         $user->update(['color_id' => json_decode($request->getContent())]);
-        return response($user->color);
+        return response(true);
     }
 }

@@ -1,6 +1,7 @@
 import { mdiPlay, mdiPause, mdiSkipBackward, mdiSkipNext, mdiSkipPrevious, mdiSync } from '@mdi/js';
 import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
+import Http from '../classes/Http';
 import Icon from '@mdi/react';
 
 export default function Player() {
@@ -15,15 +16,8 @@ export default function Player() {
     };
 
     async function getVideoId() {
-        await fetch(`${location.origin}/api/video`, )
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then(({ videoId }) => {
-                if (videoId) setVideoId(videoId);
-            });
+        const response = await Http.get('video');
+        setVideoId(response.videoId);
     }
 
     async function playVideo(e) {
@@ -40,20 +34,12 @@ export default function Player() {
         const parameters = new URLSearchParams(url.search);
         const videoId = parameters.get('v');
 
-        if (!videoId) return;
+        if (!videoId) return alert('Invalid URL, please try again\n\nAnd make sure it contains "v=" anywhere');
 
         const formData = new FormData();
         formData.append('videoId', videoId);
 
-        const args = {
-            method: 'POST',
-            headers: {
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
-            },
-            body: formData,
-        };
-
-        await fetch(`${location.origin}/api/video`, args);
+        await Http.post('video', { body: formData });
 
         setInput('');
     }
@@ -99,21 +85,19 @@ export default function Player() {
     }
 
     useEffect(() => {
-        if (channel == null) {
-            const channel = window.Echo.join('player')
-                .here(data => {
-                    if (videoId === data[0].videoId) return;
-                })
-                .listen('PlayVideo', ({ videoId }) => setVideoId(videoId))
-                .listenForWhisper('skip', e => skip(e.direction, false))
-                .listenForWhisper('pause', () => pause(false))
-                .listenForWhisper('play', () => play(false))
-                .listenForWhisper('sync', e => sync(e.timestamp, false))
-                .listenForWhisper('restart', () => restart(false));
-            setChannel(channel);
-        }
-        if (videoId == null) getVideoId();
-    }, [setChannel, play, restart, sync, pause, skip, videoId, setVideoId, youtube, YouTube]);
+        const channel = window.Echo.join('player')
+            .here(data => {
+                if (videoId === data[0].videoId) return;
+            })
+            .listen('PlayVideo', ({ videoId }) => setVideoId(videoId))
+            .listenForWhisper('skip', e => skip(e.direction, false))
+            .listenForWhisper('pause', () => pause(false))
+            .listenForWhisper('play', () => play(false))
+            .listenForWhisper('sync', e => sync(e.timestamp, false))
+            .listenForWhisper('restart', () => restart(false));
+        setChannel(channel);
+        getVideoId();
+    }, []);
 
     return (
         <div className="player w-75 col">

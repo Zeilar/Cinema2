@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { mdiLoading } from '@mdi/js';
+import Http from '../classes/Http';
 import Icon from '@mdi/react';
 
 export default function NewUser({ setUser }) {
@@ -18,32 +19,16 @@ export default function NewUser({ setUser }) {
         const formData = new FormData();
         formData.append('username', input);
 
-        const args = {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
-            },
-            body: formData,
-        };
-        
-        await fetch(`${location.origin}/api/users`, args)
-            .then(response => {
-                if (response.status === 200 || response.status === 422) {
-                    return response.json();
-                }
-            })
-            .then(data => {
-                setLoading(false);
-                if (data?.user) {
-                    setUsernameError(false);
-                    setUser(data.user);
-                } else if (data?.errors) {
-                    setUsernameError(data.errors.username[0]);
-                } else {
-                    setUsernameError('Something went wrong!');
-                }
-            });
+        const result = await Http.post('users', { body: formData });
+        setLoading(false);
+        if (result.user) {
+            setUsernameError(false);
+            setUser(result.user);
+        } else if (result.errors) {
+            setUsernameError(result.errors.username[0]);
+        } else {
+            setUsernameError('Something went wrong!');
+        }
     }
 
     return (

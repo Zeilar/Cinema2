@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ColorsController;
+use App\Http\Controllers\EmotesController;
 use App\Http\Controllers\VideosController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::get('colors', [ColorsController::class, 'index']);
+
+Route::get('emotes', [EmotesController::class, 'index']);
 
 Route::delete('messages/{message}', [MessagesController::class, 'destroy']);
 Route::get('messages/chatmax', [MessagesController::class, 'getChatMax']);

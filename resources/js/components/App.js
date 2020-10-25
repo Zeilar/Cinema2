@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { mdiLoading } from '@mdi/js';
+import Http from '../classes/Http';
 import NewUser from './NewUser';
 import Player from './Player';
 import Icon from '@mdi/react';
@@ -7,19 +8,11 @@ import Chat from './Chat';
 
 export default function App() {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(false);
 
     async function authenticate() {
-        await fetch('/api/authenticate')
-            .then(response => response.status === 200 ? response.json() : false)
-            .then(user => {
-                setLoading(false);
-                if (user) setUser(user);
-            })
-            .catch(error => {
-                console.log(error);
-                setLoading(false);
-            });
+        setUser(await Http.get('authenticate'));
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -38,7 +31,7 @@ export default function App() {
                         </>
                 }
             </>
-        )
+        );
     }
 
     return loading ? <Icon className="loading center-self" path={mdiLoading} spin={1} /> : render();

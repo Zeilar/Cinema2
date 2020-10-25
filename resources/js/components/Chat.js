@@ -1,17 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { mdiLoading } from '@mdi/js';
+import Http from '../classes/Http.js';
 import Message from './Message';
 import Icon from '@mdi/react';
 
 export default function Chat({ user }) {
-    const [userColor, setUserColor] = useState(user.color.value);
+    const [userColor, setUserColor] = useState(user.color);
     const [colorPicker, setColorPicker] = useState(false);
+    const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [messages, setMessages] = useState();
-    const [colors, setColors] = useState();
+    const [emotes, setEmotes] = useState([]);
+    const [colors, setColors] = useState([]);
     const [input, setInput] = useState('');
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState([]);
     const messagesRef = useRef();
     const chatbox = useRef();
 
@@ -22,27 +24,11 @@ export default function Chat({ user }) {
     });
 
     async function getMessages() {
-        await fetch(`${location.origin}/api/messages`)
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then(messages => {
-                if (messages) setMessages(messages);
-            });
+        setMessages(await Http.get('messages'));
     }
 
     async function getColors() {
-        await fetch(`${location.origin}/api/colors`)
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then(colors => {
-                if (colors) setColors(colors);
-            });
+        setColors(await Http.get('colors'));
     }
 
     async function chatSend(e) {
@@ -52,54 +38,29 @@ export default function Chat({ user }) {
 
         const formData = new FormData();
         formData.append('content', input);
-        setInput('');
-
-        const args = {
-            method: 'POST',
-            headers: {
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
-            },
-            body: formData,
-        };
 
         chatbox.current?.scrollTo(0, 99999);
+        setInput('');
 
-        await fetch(`${location.origin}/api/messages`, args);
+        Http.post('messages', { body: formData });
     }
 
     async function changeColor(color) {
-        if (color.value === userColor) return;
+        if (color.value === userColor.value) return;
 
         const formData = new FormData();
         formData.append('color', color.id);
 
-        const args = {
-            method: 'PUT',
-            headers: {
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
-            },
-            body: JSON.stringify(color.id),
-        };
+        const result = await Http.put(`users/${user.id}/color`, { body: JSON.stringify(color.id) });
+        if (result) setUserColor(color);
+    }
 
-        await fetch(`${location.origin}/api/users/${user.id}/color`, args)
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then(color => {
-                if (color) setUserColor(color.value);
-            });
+    async function getEmotes() {
+        setEmotes(await Http.get('emotes'));
     }
 
     async function deleteMessage(id) {
-        const args = {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
-            },
-        };
-        await fetch(`${location.origin}/api/messages/${id}`, args);
+        Http.delete(`messages/${id}`);
     }
 
     useEffect(() => {
@@ -109,14 +70,14 @@ export default function Chat({ user }) {
     useEffect(() => {
         getMessages();
         getColors();
+        getEmotes();
         window.Echo.join('chat')
             .here(users => {
-                setUsers(users?.map(({ user }) => user));
+                setUsers(users.map(({ user }) => user));
                 setLoading(false);
             })
             .listen('NewMessage', async ({ message }) => {
-                const chatMax = await fetch(`${location.origin}/api/messages/chatmax`).then(response => response.json() ?? 50);
-
+                const chatMax = await Http.get('messages/chatmax') || 50;
                 setMessages(p => {
                     const messages = p;
                     if (messages?.length >= chatMax) messages.shift();
@@ -131,7 +92,7 @@ export default function Chat({ user }) {
             <>
                 <div className="messagesWrapper flex col" ref={chatbox}>
                     {
-                        messages?.map(message => (
+                        messages.map(message => (
                             <Message
                                 deletable={message.user.id === user.id}
                                 created_at={message.created_at} 
@@ -152,19 +113,19 @@ export default function Chat({ user }) {
                     <div className="chatButtons row mt-2">
                         <div className="chatButton relative" ref={clickOutsideColorPicker}>
                             {
-                                colorPicker && colors &&
+                                colorPicker &&
                                     <div className="colorPicker rounded absolute p-2">
                                         {
                                             colors.map(color => (
-                                                <button 
-                                                    className={`btn colorPickerItem w-fit m-1 ${color.value === userColor ? 'active' : ''}`} 
+                                                <button
+                                                    className={`btn colorPickerItem w-fit m-1 ${color.value === userColor.value ? 'active' : ''}`} 
                                                     style={{ backgroundColor: color.value }} key={color.id} onClick={() => changeColor(color)}
                                                 ></button>
                                             ))
                                         }
                                     </div>
                             }
-                            <button className="btn bold" style={{ color: userColor }} onClick={() => setColorPicker(p => !p)}>
+                            <button className="btn bold" style={{ color: userColor.value }} onClick={() => setColorPicker(p => !p)}>
                                 {user.username}
                             </button>
                         </div>
