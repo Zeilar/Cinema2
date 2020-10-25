@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 Route::get('colors', [ColorsController::class, 'index']);
 
+Route::delete('messages/{message}', [MessagesController::class, 'destroy']);
 Route::get('messages/chatmax', [MessagesController::class, 'getChatMax']);
 Route::post('messages', [MessagesController::class, 'store']);
 Route::get('messages', [MessagesController::class, 'index']);

@@ -92,6 +92,16 @@ export default function Chat({ user }) {
             });
     }
 
+    async function deleteMessage(id) {
+        const args = {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-Token': document.querySelector('[name=csrf-token]').getAttribute('content'),
+            },
+        };
+        await fetch(`${location.origin}/api/messages/${id}`, args);
+    }
+
     useEffect(() => {
         chatbox.current?.scrollTo(0, 99999);
     }, [chatbox.current, messages]);
@@ -112,7 +122,8 @@ export default function Chat({ user }) {
                     if (messages?.length >= chatMax) messages.shift();
                     return [...messages, message];
                 });
-            });
+            })
+            .listen('RemoveMessage', ({ message }) => setMessages(p => p.filter(element => element.id !== message.id)));
     }, []);
 
     const render = () => {
@@ -122,7 +133,9 @@ export default function Chat({ user }) {
                     {
                         messages?.map(message => (
                             <Message
+                                deletable={message.user.id === user.id}
                                 created_at={message.created_at} 
+                                deleteMessage={deleteMessage}
                                 content={message.content}
                                 user={message.user}
                                 key={message.id}
@@ -151,7 +164,6 @@ export default function Chat({ user }) {
                                         }
                                     </div>
                             }
-
                             <button className="btn bold" style={{ color: userColor }} onClick={() => setColorPicker(p => !p)}>
                                 {user.username}
                             </button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LoggedIn;
+use App\Events\RemoveMessage;
 use Illuminate\Http\Request;
 use App\Events\NewMessage;
 use App\Models\Message;
@@ -38,5 +39,12 @@ class MessagesController extends Controller
 
     public function getChatMax() {
         return response(Message::$CHAT_MAX);
+    }
+
+    public function destroy(Message $message) {
+        $removedMessage = $message;
+        $message->delete();
+        broadcast(new RemoveMessage($removedMessage));
+        return response(true);
     }
 }

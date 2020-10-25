@@ -222,6 +222,10 @@ button[disabled] {
   background-color: #191919;
 }
 
+.message:hover .messageDelete {
+  display: block;
+}
+
 .messageTime {
   color: #969696;
 }
@@ -249,6 +253,23 @@ button[disabled] {
 
 .colorPickerItem.active {
   border: 2px solid white;
+}
+
+.messageDelete {
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+  transform: translateY(-50%);
+  background-color: #282828;
+  min-height: unset;
+  min-width: unset;
+  height: 25px;
+  color: red;
+  width: 25px;
+  right: 5px;
+  top: 50%;
+}
+
+.messageDelete:hover {
+  background-color: #323232;
 }
 
 ::-moz-selection {
