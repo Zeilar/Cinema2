@@ -224,6 +224,10 @@ button[disabled] {
   background-color: #191919;
 }
 
+.message.mention {
+  background-color: #7f0000;
+}
+
 .message:hover .messageDelete {
   display: block;
 }

@@ -30,6 +30,10 @@
         background-color: rgb(25, 25, 25);
     }
 
+    &.mention {
+        background-color: rgb(127, 0, 0);
+    }
+
     &:hover .messageDelete {
         display: block;
     }
