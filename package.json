@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "seed": "php artisan migrate:fresh --seed",
+        "seed": "php artisan migrate:fresh --seed && php artisan install-emotes",
         "clear": "php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan config:clear",
         "deploy": "php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan config:clear && npm run production",
         "dev": "npm run development",
