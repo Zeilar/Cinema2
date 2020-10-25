@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { mdiLoading } from '@mdi/js';
 import Http from '../classes/Http.js';
+import { mdiLoading } from '@mdi/js';
 import Message from './Message';
 import Icon from '@mdi/react';
 
