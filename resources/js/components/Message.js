@@ -13,7 +13,7 @@ export default function Message({ id, content, user, created_at, emotes, deletab
 
     useEffect(() => {
         setFragments(content.split(' '));
-    }, [content]);
+    }, []);
 
     useEffect(() => {
         for (let i = 0; i < fragments.length; i++) {
@@ -23,7 +23,9 @@ export default function Message({ id, content, user, created_at, emotes, deletab
             }
             emotes.forEach(emote => {
                 if (fragments[i] === emote.name) {
-                    setFragments(p => p.map())
+                    setFragments(p => p.map(element => (
+                        element === emote.name && <img src={`${location.origin}/storage/emotes/${emote.path}`} title={emote.name} />
+                    )));
                 }
             });
         }

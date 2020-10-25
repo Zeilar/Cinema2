@@ -217,7 +217,7 @@ button[disabled] {
 }
 
 .message {
-  align-items: baseline;
+  align-items: center;
 }
 
 .message:nth-child(odd) {
