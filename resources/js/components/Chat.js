@@ -28,7 +28,7 @@ export default function Chat({ user }) {
         e.preventDefault();
 
         for (let i = 0; i < emotes.length; i++) {
-            if (emotes[i].name.search(input) !== -1) {
+            if (emotes[i].name.toLowerCase().includes(input.toLowerCase())) {
                 setInput(emotes[i].name);
                 break;
             }
