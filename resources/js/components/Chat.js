@@ -27,12 +27,16 @@ export default function Chat({ user }) {
         if (input === '' || e.key !== 'Tab') return;
         e.preventDefault();
 
+        const fragments = input.split(' ');
+
         for (let i = 0; i < emotes.length; i++) {
-            if (emotes[i].name.toLowerCase().includes(input.toLowerCase())) {
-                setInput(emotes[i].name);
+            if (emotes[i].name.toLowerCase().startsWith(fragments[fragments.length - 1].toLowerCase())) {
+                fragments[fragments.length - 1] = emotes[i].name;
                 break;
             }
         }
+
+        setInput(fragments.join(' '));
     }
 
     async function getMessages() {
