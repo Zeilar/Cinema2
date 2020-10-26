@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import Http from '../classes/Http.js';
 import { mdiLoading } from '@mdi/js';
@@ -59,18 +59,14 @@ export default function Chat({ user }) {
         if (result) setUserColor(color);
     }
 
-    async function deleteMessage(id) {
-        Http.delete(`messages/${id}`);
-    }
-
     useEffect(() => {
         chatbox.current?.scrollTo(0, 99999);
     }, [chatbox.current, messages]);
 
     useEffect(() => {
         getMessages();
-        getColors();
         getEmotes();
+        getColors();
         window.Echo.join('chat')
             .here(users => {
                 setUsers(users.map(({ user }) => user));
@@ -85,6 +81,10 @@ export default function Chat({ user }) {
                 });
             })
             .listen('RemoveMessage', ({ message }) => setMessages(p => p.filter(element => element.id !== message.id)));
+    }, []);
+
+    const deleteMessage = useCallback(id => {
+        Http.delete(`messages/${id}`);
     }, []);
 
     const render = () => {
