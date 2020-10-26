@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import Http from '../classes/Http.js';
-import { mdiLoading } from '@mdi/js';
+import { mdiLoading, mdiPhoneReturnOutline } from '@mdi/js';
 import Message from './Message';
 import Icon from '@mdi/react';
 
@@ -22,6 +22,18 @@ export default function Chat({ user }) {
     const clickOutsideColorPicker = useOnclickOutside(() => {
         setColorPicker(false);
     });
+
+    function autoComplete(e) {
+        if (input === '' || e.key !== 'Tab') return;
+        e.preventDefault();
+
+        for (let i = 0; i < emotes.length; i++) {
+            if (emotes[i].name.search(input) !== -1) {
+                setInput(emotes[i].name);
+                break;
+            }
+        }
+    }
 
     async function getMessages() {
         setMessages(await Http.get('messages'));
@@ -108,7 +120,7 @@ export default function Chat({ user }) {
                 </div>
                 <div className="chatControls p-2 mt-2 col">
                     <form className="chatSendForm" onSubmit={chatSend}>
-                        <input className="chatInput w-100" placeholder="Aa" value={input} onChange={(e) => setInput(e.target.value)} />
+                        <input className="chatInput w-100" placeholder="Aa" value={input} onKeyDown={autoComplete} onChange={(e) => setInput(e.target.value)} />
                     </form>
 
                     <div className="chatButtons row mt-2">
