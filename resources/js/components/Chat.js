@@ -10,6 +10,7 @@ export default function Chat({ user }) {
     const [colorPicker, setColorPicker] = useState(false);
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [matches, setMatches] = useState([]);
     const [colors, setColors] = useState([]);
     const [emotes, setEmotes] = useState([]);
     const [input, setInput] = useState('');
@@ -24,18 +25,30 @@ export default function Chat({ user }) {
     });
 
     function autoComplete(e) {
-        if (input === '' || e.key !== 'Tab') return;
+        if (input === '' || e.key !== 'Tab') {
+            return setMatches([]);
+        }
         e.preventDefault();
 
         const fragments = input.split(' ');
+        if (matches.length > 0) {
+            fragments[fragments.length - 1] = matches[1].name;
 
-        for (let i = 0; i < emotes.length; i++) {
-            if (emotes[i].name.toLowerCase().startsWith(fragments[fragments.length - 1].toLowerCase())) {
-                fragments[fragments.length - 1] = emotes[i].name;
-                break;
+            setMatches(p => {
+                const removed = p.shift();
+                return [...p, removed];
+            });
+        } else {
+            const localMatches = [];
+            for (let i = 0; i < emotes.length; i++) {
+                if (emotes[i].name.toLowerCase().startsWith(fragments[fragments.length - 1].toLowerCase())) {
+                    setMatches(p => [...p, emotes[i]].sort((a, b) => a.name.length - b.name.length || a.name.localeCompare(b.name)));
+                    localMatches.push(emotes[i]);
+                }
             }
-        }
-
+            localMatches.sort((a, b) => a.name.length - b.name.length || a.name.localeCompare(b.name));
+            fragments[fragments.length - 1] = localMatches[0].name;
+        }        
         setInput(fragments.join(' '));
     }
 
