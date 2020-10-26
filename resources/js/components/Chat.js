@@ -32,7 +32,7 @@ export default function Chat({ user }) {
 
         const fragments = input.split(' ');
         if (matches.length > 0) {
-            fragments[fragments.length - 1] = matches[1].name;
+            fragments[fragments.length - 1] = matches.length > 1 ? matches[1].name : matches[0].name;
 
             setMatches(p => {
                 const removed = p.shift();
@@ -47,7 +47,7 @@ export default function Chat({ user }) {
                 }
             }
             localMatches.sort((a, b) => a.name.length - b.name.length || a.name.localeCompare(b.name));
-            fragments[fragments.length - 1] = localMatches[0].name;
+            if (localMatches.length > 0) fragments[fragments.length - 1] = localMatches[0].name;
         }
         setInput(fragments.join(' '));
     }
