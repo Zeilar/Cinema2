@@ -84,14 +84,6 @@ export default function Player() {
         if (whisperToOthers) channel?.whisper('restart', { restart: true });
     }
 
-    function checkURL() {
-        if (location.pathname !== '/') setVideoId(location.pathname.replace('/', ''));
-    }
-
-    useEffect(() => {
-        checkURL();
-    });
-
     useEffect(() => {
         const channel = window.Echo.join('player')
             .here(data => {
