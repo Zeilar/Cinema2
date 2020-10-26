@@ -48,7 +48,7 @@ export default function Chat({ user }) {
             }
             localMatches.sort((a, b) => a.name.length - b.name.length || a.name.localeCompare(b.name));
             fragments[fragments.length - 1] = localMatches[0].name;
-        }        
+        }
         setInput(fragments.join(' '));
     }
 

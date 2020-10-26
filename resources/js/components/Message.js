@@ -23,9 +23,11 @@ function Message({ id, content, user, created_at, emotes, deletable, deleteMessa
             }
             emotes.forEach(emote => {
                 if (fragments[i] === emote.name) {
-                    setFragments(p => p.map(element => (
-                        element === emote.name && <img src={`${location.origin}/storage/emotes/${emote.path}`} title={emote.name} />
-                    )));
+                    setFragments(p => p.map(element => {
+                        return element === emote.name
+                            ? <img src={`${location.origin}/storage/emotes/${emote.path}`} title={emote.name} /> 
+                            : element;
+                    }));
                 }
             });
         }
@@ -39,8 +41,8 @@ function Message({ id, content, user, created_at, emotes, deletable, deleteMessa
             <span className="messageAuthor bold mr-1" style={{ color: user.color.value }}>
                 {user.username}:
             </span>
-            <p className="messageContent">
-                {fragments.map(fragment => <span className="messageFragment" key={Math.random()}>{fragment} </span>) /* important whitespace */}
+            <p className="messageContent row">
+                {fragments.map(fragment => <span className="messageFragment" key={Math.random()}>{fragment}</span>)}
             </p>
             {
                 deletable &&

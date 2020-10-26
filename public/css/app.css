@@ -238,6 +238,11 @@ button[disabled] {
 
 .messageContent {
   word-break: break-word;
+  align-items: center;
+}
+
+.messageFragment {
+  margin: 0 2px;
 }
 
 .chatSubmit {
