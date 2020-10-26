@@ -224,6 +224,10 @@ button[disabled] {
   background-color: #191919;
 }
 
+.message:nth-child(odd) .messageDelete {
+  background-color: #191919;
+}
+
 .message.mention {
   background-color: #7f0000;
 }
